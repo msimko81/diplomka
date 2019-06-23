@@ -1,0 +1,616 @@
+\chapter{Mathematical concepts and notation}
+
+Throughout this article, we will use the following notation:
+
+The space under consideration will be an euclidean point space $\mathcal E$ over
+a vector space $\mathcal V$.
+
+We will use the term \tu{tensor} as a synonym for a linear mapping 
+from $\mathcal V$ into $\mathcal V$. Let us denote the following sets of tensors:
+\[
+\begin{split}
+\lin &= \mbox{set of all tensors,} \\
+\linp &= \mbox{set of all tensors $S$ with $\det S > 0$,} \\
+\sym &= \mbox{set of all symmetric tensors,} \\
+\skw &= \mbox{set of all skew (antisymmetric) tensors,} \\
+\psym &= \mbox{set of all symmetric, positive definite tensors,} \\
+\orth &= \mbox{set of all orthogonal tensors,} \\
+\orthp &= \mbox{set of all rotations.} \\
+\end{split}
+\]
+
+We will use the term \tu{body} $\mathcal B$ to describe a regular region in
+$\mathcal E$. We refer to $\mathcal B$ as a \tu{reference configuration}.
+Points $\tu{p} \in \mathcal B$ are called \tu{material points}.
+
+By the \tu{deformation} of $\mathcal B$ we mean a smooth, one-to-one mapping $f$ 
+which maps $\mathcal B$ onto a closed region in $\mathcal E$, and which satisfies 
+$\det \nabla f > 0$. The tensor $F(\tu{p})=\nabla f(\tu{p})$ is called the
+\tu{deformation gradient} and belongs to $\linp$.
+
+Let $\mathcal B$ be a body. A \tu{motion} of $\mathcal B$ is a class $C^3$ function
+$$x:\mathcal B \times \mathbb R \rightarrow \mathcal E$$
+with $x(\cdot,t)$, for each fixed $t$, a deformation of $\mathcal B$. 
+We refer to $$\tu{x}=x(\tu{p},t)$$ as the \tu{place} occupied by a material point 
+$\tu{p}$ at a time $t$ and we write $\mathcal B_t = x(\mathcal B,t)$ for the
+region of space occupied by the body at $t$.
+We define the \tu{trajectory} of the body as a set
+$$\mathcal T=\{(\tu{x},t)|\,\tu{x}\in\mathcal B_t,t\in\mathbb R\}.$$
+
+At each $t$, $x(\cdot,t)$ has an inverse $$p(\cdot,t):\mathcal B_t \rightarrow \mathcal B$$
+such that $$x(p(\tu{x},t),t)=\tu{x}, \qquad p(x(\tu{p},t),t)=\tu{p}.$$
+
+Given $(\tu{x},t) \in \mathcal T$, $$\tu{p}=p(\tu{x},t)$$ is the material point that occupies 
+a place $\tu{x}$ at a time $t$. The map $$p:\mathcal T\rightarrow\mathcal B$$ is
+called the \tu{reference map} of the motion.
+
+A \tu{material field} is a function with domain $\mathcal B\times\mathbb R$; a \tu{spatial field}
+is a function with domain $\mathcal T$. We can transform a material field into a spatial field, 
+and vice versa. 
+We define the \tu{spatial description} $\Phi_s$ of a material field 
+$(\tu{p},t)\rightarrow\Phi(\tu{p},t)$ by $$\Phi_s(\tu{x},t)=\Phi(p(\tu{x},t),t),$$
+and the \tu{material description} $\Omega_m$ of a spatial field
+$(\tu{x},t)\rightarrow\Omega(\tu{x},t)$ by $$\Omega_m(\tu{p},t)=\Omega(x(\tu{p},t),t).$$
+
+Given a material field $\Phi$ we write 
+$$\dot\Phi(\tu{p},t)=\ddt \Phi(\tu{p},t)$$
+for a derivative with respect to time $t$ holding the material point $\tu{p}$ fixed, and
+$$\nabla\Phi(\tu{p},t)=\nabla_p\,\Phi(\tu{p},t)$$
+for a gradient with respect to $\tu{p}$ holding $t$ fixed.
+
+Similarly, given a spatial field $\Omega$ we write 
+$$\Omega'(\tu{x},t)=\ddt \Omega(\tu{x},t)$$
+for the derivative with respect to time $t$ holding the place $\tu{x}$ fixed, and
+$$\grad\Omega(\tu{x},t)=\nabla_x\,\Omega(\tu{x},t)$$
+for the gradient with respect to $\tu{x}$ holding $t$ fixed.
+
+We define the \tu{material time derivative} $\dot\Omega$ of a spatial field $\Omega$ by
+$$\dot\Omega=((\Omega_m)^.)_s\,;$$ that is,
+$$\dot\Omega(\tu{x},t)=\ddt \Omega(x(\tu{p},t),t)|_{\tu{p}=p(\tu{x},t)}\,.$$
+
+Further, we define the \tu{spatial divergence} $\dv$ to be a divergence
+operation for a spatial field, so that $\grad$ is the underlying gradient. Thus,
+for a spatial vector field $v$, we have 
+$$\dv v(\tu{x},t)=\tr\grad v(\tu{x},t).$$
+
+We call $$\dot x(\tu{p},t)=\ddt x(\tu{p},t)$$ the \tu{velocity} 
+of the material point $\tu{p}$, and $v:\mathcal T\rightarrow\mathcal V$ defined by
+$$v(\tu{x},t)=\dot x(p(\tu{x},t),t)$$ 
+the \tu{spatial description of velocity}. 
+The spatial field $$L=\grad v$$ is called the \tu{velocity gradient}. We write
+$$L=D+W,$$ where $D$ and $W$, respectively, denote the symmetric and skew parts of $L$.
+
+Using the concept of velocity gradient previously defined, one can show that
+$\dot F=L_m F$ for the material time derivative of a deformation gradient $F$.
+
+By the \tu{system of forces} for $\mathcal B$ during a motion (with trajectory $\mathcal T$), 
+we mean a pair $(s,b)$ of functions
+$$s:\mathcal N\times\mathcal T\rightarrow\mathcal V, \qquad b:\mathcal T\rightarrow\mathcal V,$$
+where $\mathcal N$ is the set of all unit vectors 
+from $\mathcal V$\footnote{More precise definition is in Gurtin \cite[p. 99]{gurtin}.}.
+
+By Cauchy's Theorem\footnote{See Gurtin \cite[p. 101]{gurtin}.}, 
+there exists a spatial tensor field $T$ (called the \tu{Cauchy stress}) such that 
+\begin{itemize}
+ \item $s(n)=Tn$ for each unit vector $n$,
+ \item $T$ is symmetric,
+ \item $T$ satisfies the \tu{equation of motion} $$\dv T+b=\rho\dot v,$$  
+\end{itemize}
+where $\rho$ is the density in motion.
+
+By the \tu{dynamical process} we mean a pair $(x,T)$ with 
+\begin{itemize}
+ \item $x$ motion,
+ \item $T$ symmetric tensor field on trajectory $\mathcal T$ of x,
+ \item $T(\tu{x},t)$ smooth function of $\tu{x}$ on $\mathcal B_t$.
+\end{itemize}
+
+A \tu{material body} is a body $\mathcal B$ together with a family $\mathcal C$ 
+of dynamical processes. $\mathcal C$ is called the \tu{constitutive class} of the body.
+
+Let $x$ and $x^*$ be motions of $\mathcal B$. 
+We say, that $x$ and $x^*$ are {\it related by a change in observer}, if
+\eq{gu20-1}{x^*(\tu{p},t)=q(t)+Q(t)[x(\tu{p},t)-o]}
+for every material point $\tu{p}$ and time $t$, where $q(t)$ is a point of the 
+space and $Q(t)$ is a rotation. 
+
+Letting $$L=\grad v, \qquad L^*=\grad v^*,$$ where 
+$$v=(\dot x)_s, \qquad v^*=(\dot x^*)_s,$$ we obtain
+$$L^*=QLQ^T+\dot{Q}Q^T,\qquad D^*=QDQ^T,$$ where $D$ and $D^*$, respectively, are symmetric
+parts of $L$ and $L^*$.	Thus, we have $\tr L^*=\tr L$.
+
+We say that two dynamical processes $(x,T)$ and $(x^*,T^*)$ 
+\tu{are related by a change in observer} if there exist $C^3$ functions 
+$$q:\mathbb R\rightarrow\mathcal E, \qquad Q:\mathbb R\rightarrow\orthp$$
+such that 
+\begin{itemize}
+	\item \eref{gu20-1} holds for all $\tu{p}\in\mathcal B$ and $t\in\mathbb R$,
+	\item $T^*=QTQ^T$ in trajectory of $x$.
+\end{itemize}
+
+We say that \tu{a response of a material body is independent of the observer} provided
+its constitutive class $\mathcal C$ has the following property: if a process $(x,T)$ belongs 
+to $\mathcal C$, so does every dynamical process related to $(x,T)$ by a change in observer.
+
+\chapter{Governing equations}
+
+In this work, we will solve a flow of compressible Newtonian fluid, which is a
+material, for which the Cauchy stress is defined by the constitutive equation of
+the form
+\eq{gu22-1}{T = -\pi I + C[L],}
+where $C$ is a linear function of the velocity gradient $$L=\grad v.$$
+
+As considered in Gurtin \cite[p. 147]{gurtin}, Newtonian fluid means {\it incompressible} Newtonian 
+fluid. The Navier-Stokes equations are derived with the assumption $\tr L=0$, which means 
+incompressibility. In our case, we need to consider compressibility effects and cannot neglect 
+the term $\tr L=\dv v$. We will use the name Newtonian fluid for 
+{\it compressible} Newtonian fluid.
+In order to simplify the constitutive equation, we define the \tu{extra stress}
+$T_0$ by $$T_0=T+\pi I=T-\fr{1}{3}(\tr T)I.$$
+Then the constitutive equation \eref{gu22-1} takes the simple form
+\eq{gu22-3}{T_0=C[L].}
+
+In view of the previous, we consider \tu{Newtonian fluid} a compressible 
+material body consistent with the following constitutive equation: 
+there exists a linear {\it response function} $$C:\lin \rightarrow \sym$$ such that 
+the constitutive class $\mathcal C$ is a set of all dynamical processes $(x,T)$ 
+which obey the constitutive equation \eref{gu22-3}.
+
+In the following theorem, we will show that the response is determined by {\it two constants}. 
+
+\tu{Theorem}\footnote{Cf. Gurtin \cite[p. 149]{gurtin}.}
+A necessary and sufficient condition for the response of a Newtonian fluid to be
+independent of the observer is that its response function $C$ has the form
+\eq{gu22-4}{C[L]=2\mu D + \lambda (\tr L)I}
+for every $L \in \lin$, where $$D=\fr{1}{2}(L+L^T).$$
+The scalar constants $\mu$ and $\lambda$ are called the first and the second 
+\tu{viscosity coefficients} of the fluid.
+\begin{proof}
+Our proof will copy the one from Gurtin, so that we include the compressibility.
+
+(Sufficiency) Assume that \eref{gu22-4} holds. Let $(x,T)$ belong to the constitutive 
+class $\mathcal C$ of the fluid. Then $$T_0=2\mu D+\lambda (\tr L)I.$$
+Let $(x^*,T^*)$ be related to $(x,T)$ by a change in observer. Then
+$$T^*=QTQ^T,\qquad D^*=QDQ^T,$$
+and
+$$\tr T^*=\tr(QTQ^T)=\tr T.$$
+Therefore 
+\[
+\begin{split}
+T^*_0&=T^*-\fr{1}{3}(\tr T^*)I=QTQ^T-\fr{1}{3}(\tr T)QQ^T=QT_0Q^T\\
+&=Q(2\mu D)Q^T + \lambda\,\tr(QLQ^T)I = 2\mu D^* + \lambda(\tr L^*)I,
+\end{split}
+\]
+because $$L^*=QLQ^T+\dot{Q}Q^T,\qquad \tr L^*=\tr(QLQ^T)=\tr L,$$
+since $\dot{Q}Q^T \in \skw.$
+
+Thus $(x^*,T^*)\in \mathcal C$ and the response is independent of the observer.
+
+The proof of necessity is facilitated by the following Lemma and Representation Theorem:
+
+\tu{Lemma.} Let $L \in \lin$ be a constant tensor. 
+Then there exists a motion $x$ with velocity gradient \eq{gu22-6}{\grad v=L.}
+\begin{proof}
+Take $$F(t)=e^{Lt}$$
+so that $F$ is a unique solution of
+\eq{gu22-7}{\dot F=LF, \qquad F(0)=I.}
+Thus
+$$x(\tu{p},t)=\tu{q}+F(t)[\tu{p}-\tu{q}]$$
+defines a motion with the deformation gradient $F$. Further, \eref{gu22-6}
+follows from \eref{gu22-7}$_1$, since $\dot F=(\grad v)_mF$ and $L=L_m$.
+\end{proof}
+
+\tu{Representation Theorem for Isotropic Tensor Functions.}\footnote{Cf. Gurtin \cite[p. 235]{gurtin}.} 
+A linear function
+$$  G:Sym \rightarrow Sym $$
+is isotropic if and only if there exist scalars $\mu$ and $\lambda$ such that
+\eq{gu37-22}{G(A)=2\mu A + \lambda (\tr A)I}
+for every $A \in \sym$.
+
+We now return to the proof of the previous theorem. To establish the 
+{\it necessity} of \eref{gu22-4} we assume that
+\eq{gu22-8}{\mbox{the response is independent of the observer.}}
+Let $L \in \lin$ be arbitrary, let $x$ be the motion constructed in the previous lemma, and let
+$T=T_0=C[L]$ be the constant field defined by \eref{gu22-3}. Then, clearly, 
+$(x,T)\in \mathcal C$. Let $(x^*,T^*)$ be related to $(x,T)$ by a change in observer. 
+Then by \eref{gu22-8}, $(x^*,T^*)\in \mathcal C$ and
+\eq{gu22-9}{T^*_0=C[L^*].}
+But
+$$T^*_0=QT_0Q^T,\qquad L^*=QLQ^T+\dot QQ^T;$$
+hence \eref{gu22-9} yields
+$$QT_0Q^T=C[QLQ^T+\dot QQ^T],$$
+and we conclude from \eref{gu22-3} and \eref{gu22-6} that
+\eq{gu22-10}{QC[L]Q^T=C[QLQ^T+\dot QQ^T].}
+Clearly, this relation holds for every $L\in\lin$ (the definition scope of $C$) and every $C^3$ function
+$Q:\mathbb R \rightarrow \orthp$. Fix $L$ and take $$Q(t)=e^{-Wt},$$ where $$W=\fr{1}{2}(L-L^T).$$
+Then $Q(t)$ is rotation, since $W$ is skew, and $$Q(0)=I,\qquad \dot Q(0)=-W.$$
+Using this function $Q$ in \eref{gu22-10} at $t=0$ yields
+$$C[L]=C[L-W]=C[D],$$ where $$D=\fr{1}{2}(L+L^T).$$
+Thus $C$ is completely determined by its restriction to $\sym$.
+Next, let $Q$ be a constant function with values in $\orthp$. Then \eref{gu22-10} with
+$L=D$ ($D\in\sym$) implies that $$QC[D]Q^T=C[QDQ^T].$$
+Since this relation must hold for every $D\in\sym$ and every $Q\in\orthp$, the restriction
+of $C$ to $\sym$ is isotropic; we therefore conclude from the representation \eref{gu37-22} that
+$$C[D]=2\mu D + \lambda (\tr L)I$$ for all $D\in\sym$.
+
+\end{proof}
+
+By \eref{gu22-4} the constitutive equation \eref{gu22-1} takes the form
+\eq{gu22-13}{T=-\pi I+2\mu D+\lambda (\tr L)I.}
+We consider the equation of motion
+$$\rho[v'+(\grad v)v]=\dv T+b.$$
+and substitute \eref{gu22-13} for $T$.
+We have,
+$$2\,\dv D=\dv(\grad v+\grad v^T)=\Delta v+\grad \dv v$$
+and
+$$\dv(\tr L)I=\grad(\tr L)=\grad \dv v,$$
+where $\Delta=\dv \grad$ is the spatial Laplacian. Thus the equation of motion reduces to
+\eq{gu22-14}
+{
+\rho[v'+(\grad v)v]=\mu\Delta v+(\lambda+\mu)\,\grad \dv v -\grad \pi + b.
+}
+
+These (vector) relations are the \tu{Navier-Stokes equations}; given $\mu$, $\lambda$ and $b$ 
+they constitute a nonlinear system of partial differential equations for the velocity 
+$v$, density $\rho$ and pressure $\pi$.
+We supplement these equations by the continuity equation
+\eq{si-eq-cont}
+{
+\rho'+\dv(\rho v)=0.
+}
+
+Now, we have four equations for five unknowns, so we have to add one more equation to the system.
+We will consider barotropic flow\footnote{Cf. Feistauer et al. \cite[p. 33]{feistauer}.}, 
+where the pressure is a known function of the density
+\eq{si-bar-flow}
+{
+\pi=\widehat\pi(\rho).
+}
+
+\chapter{Formulation of the problem}
+
+In what follows, we shall be concerned with a two-dimensional model describing an interaction 
+of a viscous, compressible fluid with an airfoil. The airfoil is considered to be a rigid body 
+with two degrees of freedom - its vertical and torsion vibrations (see \iref{si-im-airfoil}). 
+Equations describing the airfoil motion will be presented later.
+
+\begin{figure}[h]
+  \begin{center}
+    \img{profile.png}
+    \caption{Airfoil model}
+    \label{si-im-airfoil}
+  \end{center}
+\end{figure}
+
+\begin{figure}[h]
+  \begin{center}
+    \img{problem-setting.png}
+    \caption{Problem setting}
+    \label{si-im-setting}
+  \end{center}
+\end{figure}
+
+This problem has a time-dependent boundary (moving airfoil) and therefore, a time-dependent
+computational domain (see \iref{si-im-setting}).
+
+\section{Input data of our problem}
+
+We consider the problem in the domain 
+$$\widetilde\Omega:=\bigcup_{t\in[0,T]}\Omega_t\times\{t\}.$$
+We split the domain boundary into four parts. Three of them are time independent, whereas the part
+representing the moving airfoil depends on time:
+\[
+\begin{array}{ll}
+\Gamma_I:=\Gamma_I\times[0,T] &\qquad \mbox{inlet,} \\
+\Gamma_O:=\Gamma_O\times[0,T] &\qquad \mbox{outlet,} \\
+\Gamma_W:=\Gamma_W\times[0,T] &\qquad \mbox{virtual flow wall,} \\
+\Sigma:=\bigcup_{t\in[0,T]}\Gamma_{W_t}\times\{t\} &\qquad \mbox{airfoil.}
+\end{array}
+\]
+In the domain $\widetilde\Omega$, we consider the Navier-Stokes equations, the continuity equation
+and the condition of barotropic flow:
+\eq{si-problem-domain}
+{
+\setlength\arraycolsep{2pt}
+\begin{array}{cl}
+\rho[v'+(\grad v)v] = \mu\Delta v+(\lambda+\mu)\,\grad \dv v -\grad \pi + b
+  & \qquad\mbox{in } \widetilde\Omega, \\
+\rho'+\dv(\rho v) = 0 & \qquad\mbox{in } \widetilde\Omega, \\
+\pi = \widehat\pi(\rho) & \qquad\mbox{in } \widetilde\Omega.
+\end{array}
+}
+Boundary conditions for the time independent part of the boundary:
+\eq{si-problem-boundary}
+{
+\setlength\arraycolsep{2pt}
+\begin{array}{rll}
+v &= v_D & \qquad\mbox{on } \Gamma_I \cup \Gamma_W, \\
+-(\pi-\pi_{ref})n+\mu\,(\grad v)n+(\lambda+\mu)(\dv v)n &= 0 & \qquad\mbox{on } \Gamma_O, \\
+\rho &= \rho_D & \qquad\mbox{on } \Gamma_I.
+\end{array}
+}
+Initial conditions:
+\eq{si-problem-initial}
+{
+\setlength\arraycolsep{2pt}
+\begin{array}{rll}
+v(x,0) &= v_0(x) & \qquad\mbox{in } \Omega_0, \\
+\rho(x,0) &= \rho_0(x) & \qquad\mbox{in } \Omega_0.
+\end{array}
+}
+We also need to prescribe boundary conditions on the part $\Sigma$ of the boundary and initial 
+conditions on $\Omega_0$. This will be discussed further.
+
+The fact that the domain occupied by the fluid depends on time causes difficulties. In order 
+to overcome them, we can use Arbitrary Lagrangian-Eulerian (ALE) formulation for the mathematical 
+description of the problem with a moving boundary. 
+
+\section{Equations of airfoil motion}
+
+In our case, the airfoil can perform its vertical and torsion vibrations.
+These vibrations are described by two degrees of freedom: airfoil deflection 
+angle $\alpha$ and vertical displacement $h$. The evolution of these values for
+small angles of deflection is described by the following differential 
+equations\footnote{See Růžička \cite[p. 17]{ruzicka}.} 
+\eq{si-airfoil-description}
+{
+\setlength\arraycolsep{2pt}
+\begin{array}{c}
+m \ddot h+D_{hh}\dot h+D_{h\alpha}\dot\alpha+S_\alpha\ddot\alpha+k_{hh}h=-L_2, \\
+I_\alpha\ddot\alpha+D_{\alpha h}\dot h+D_{\alpha\alpha}\dot\alpha+S_\alpha\ddot h+k_{\alpha\alpha}\alpha=M.
+\end{array}
+}
+Here we use the following notation:
+\[
+\setlength\arraycolsep{2pt}
+\begin{array}{ll}
+m=\int_{\Pi_t}{\rho}\dV & \mbox{weight of airfoil,} \\
+S_\alpha=\int_{\Pi_t}{x\rho}\dV & \mbox{static momentum,} \\
+I_\alpha=\int_{\Pi_t}{x^2\rho}\dV & \mbox{momentum of inertia,} \\
+L_2=-\int_{\Gamma_{W_t}}\sum_{j=1}^2T_{2j}n_j\dA & \mbox{aerodynamic lift,} \\
+M=-\int_{\Gamma_{W_t}}\sum_{i,j=1}^2T_{ij}n_j r_i^{ort})\dA \quad
+&\mbox{aerodynamic momentum,}
+\end{array}
+\]
+where $\Pi_t$ is the area of the airfoil, $\Gamma_{W_t}=\partial\Pi_t$, $T$ is
+the stress tensor obtained from \eref{gu22-13}, $r_1^{ort}=-(x_2-x_{EA2})$ and
+$r_2^{ort}=x_1-x_{EA1}$. Further,
+\[
+\begin{array}{ll}
+k_{hh} & \mbox{vertical stiffness,} \\
+k_{\alpha\alpha} & \mbox{torsion stiffness,} \\
+D_{hh},D_{h\alpha},D_{\alpha h},D_{\alpha\alpha} \quad & \mbox{components of
+viscous damping}
+\end{array}
+\]
+are given (constant) parameters.
+
+Equations \eref{si-airfoil-description} are supplemented with these initial
+conditions \[
+\begin{array}{ll}
+\alpha(0)=\alpha_0, & \dot\alpha(0)=\alpha_1, \\
+h(0)=h_0, & \dot h(0)=h_1. \\
+\end{array}
+\]
+
+\begin{figure}[t]
+  \begin{center}
+    \img{vibrations.png}
+    \caption{Airfoil vibrations}
+    \label{si-im-vibrations}
+  \end{center}
+\end{figure}
+
+
+\section{ALE formulation}
+
+We consider the Navier-Stokes equations in a moving domain $\widetilde\Omega=\Omega_t\times[0,T]$ (which 
+means $\bigcup_{t\in[0,T]}\Omega_t\times\{t\}$ - the so-called non-cylindrical domain). \\
+In order to simulate a fluid flow on a moving domain, we employ the 
+{\it Arbitrary Lagrangian-Eulerian} (ALE) method\footnote{See, e.g. Quarteroni 
+\cite[p. 37]{quarteroni}; Sváček \cite[p. 6]{svacek}.}. 
+
+Let $\Omega_0$ be the original domain and $\Omega_t$ be the computational
+domain at a (later) time $t$. We introduce the ALE mapping
+\[
+\begin{split}
+&\mathcal A_t:\Omega_0\rightarrow\Omega_t\\
+&X\mapsto y=y(X,t)=\mathcal A_t(X),
+\end{split}
+\]
+which maps the original domain $\Omega_0$ onto the computational domain $\Omega_t$, such that 
+$\mathcal A_t$ is continuous and bijective on $\Omega_0$. 
+
+We define the {\it domain velocity} field at points $X$ of the original domain at each time level $t$
+$$\tilde w(X,t)=\ddt y(X,t)=\ddt \mathcal A_t(X),$$
+which, in spatial coordinates has the form
+$$w=\tilde w\circ A_t^{-1}, \qquad \mbox{i.e.} \quad w(y,t)=\tilde w(\mathcal A_t^{-1}(y),t).$$
+
+For a function $f:\widetilde\Omega\rightarrow\mathbb R$, we define the {\it ALE derivative} of $f$ as
+$$\DADt f(y,t) = \ddt \tilde f(X,t),$$
+where $\tilde f=f\circ\mathcal A_t$ and $X=\mathcal A_t^{-1}(y)$.
+
+Using the chain rule for derivative, we obtain
+\[
+\begin{split}
+\DADt f(y,t) &= \ddt f(\mathcal A_t(X),t) \\
+&= \ddt f(y,t) + \grad f(y,t) \cdot \ddt \mathcal A_t(X)|_{X=\mathcal A_t^{-1}(y)} \\
+&= \ddt f(y,t) + \grad f(y,t) \cdot w(y,t).
+\end{split}
+\]
+
+Using ALE derivative, we can rewrite the Navier-Stokes equations in the form
+\eq{si-ALE-form}
+{
+\setlength\arraycolsep{2pt}
+\begin{array}{c}
+\rho[\DADt v+(\grad v)(v-w)] = \mu\Delta v+(\lambda+\mu)\,\grad \dv v -\grad \pi + b \\
+\DADt \rho+\dv(\rho v)-\grad\rho \cdot w = 0 \\
+\pi = \widehat\pi(\rho)
+\end{array}
+}
+where all equations are considered on the domain $\widetilde\Omega$. 
+Note, that the continuity equation can be written in the form
+\eq{si-ALE-cont}{\DADt \rho+\rho\,\dv(v)+\grad\rho \cdot (v-w) = 0.}
+Boundary and initial conditions remain the same as before.
+
+
+\section{Weak formulation}
+
+First, we define the spaces of test functions. Let $q\in Q\!=\!L^2(\Omega_t)$ \\
+and $u\in V\!=\!\{u \in H^1(\Omega_t)^2 : u|_{\Gamma_D}=0\}$, where 
+$\Gamma_D=\Gamma_I \cup \Gamma_W \cup \Gamma_{W_t}$ is the part of the boundary,
+where we prescribe the Dirichlet condition.
+
+Multiplying equation \eref{si-ALE-form}$_1$ with any $u\in V$, integrating over $\Omega_t$
+and using Green's theorem, we obtain
+\[
+\begin{split}
+\int_{\Omega_t}&{\rho\; \DADt v \cdot u}\dV
++ \int_{\Omega_t}{\rho(\grad v)(v-w) \cdot u}\dV = \\
+&-\mu \int_{\Omega_t}{\grad v \cdot \grad u}\dV
+- (\lambda+\mu) \int_{\Omega_t}{\dv v \,\dv u}\dV \\
+&+ \int_{\Omega_t}{\pi \,\dv u}\dV 
++ \int_{\Omega_t}{b \cdot u}\dV \\
+&+ \int_{\Gamma_O}{[-\pi + \mu\,(\grad v) + (\lambda+\mu)(\dv v)]\,n\cdot u}\dA
+\end{split}
+\]
+
+Same proceeding with \eref{si-ALE-cont}, in which we use any $q\in Q$, yields
+\[
+\int_{\Omega_t}{\DADt \rho \;q}\dV
++\int_{\Omega_t}{\rho \,\dv v \;q}\dV
++\int_{\Omega_t}{\grad \rho \cdot (v - w) \;q}\dV
+=0
+\]
+
+For simplicity, we define the following forms\footnote{Denotation from Feistauer
+et al. \cite[p. 368]{feistauer}.}: 
+\[
+\begin{split}
+a(v,u) &= \mu\,(\grad v,\grad u) + (\lambda+\mu)(\dv v,\dv u), \\
+b(u,q) &= (\dv u,q), \\
+\alpha(v,\rho,q) &= (v \cdot \grad \rho,q), \\
+d(\rho,w,v,u) &= (\rho(\grad v)w,u), \\
+e(\rho,v,q) &= (\rho\,\dv v,q). \\
+\end{split}
+\]
+Then, we can rewrite the previous equations in the form
+\eq{si-weak-homog}{
+\begin{split}
+(\rho\; \DADt &v,u) + d(\rho,v-w,v,u) + a(v,u) \\
+&=b(u,\pi) + (b,u) + \int_{\Gamma_O}{\pi_{ref}\,n \cdot u}\dA, \\
+(\DADt \rho,q) &+ e(\rho,v,q) + \alpha(v-w,\rho,q) = 0,
+\end{split}
+}
+where we put the so-called soft boundary condition \eref{si-problem-boundary}$_2$.
+
+\section{Boundary conditions}
+
+We assume that for each $t\in[0,T]$ there exists $v^* \in H^1(\Omega_t)^2$,
+such that 
+\[
+\begin{array}{ll}
+v^*(x,t)=v_D(x,t), &x \in \Gamma_I \cup \Gamma_W \\
+v^*(x,t)=w(x,t), &x \in \Gamma_{W_t}
+\end{array}
+\]
+(in the sense of traces). Then the {\it weak formulation} reads:\\
+\begin{itemize}
+ \item Find $v$, such that $v - v^* \in V$; $\rho \in Q$
+ \item equation \eref{si-weak-homog}$_1$ is satisfied $\forall u \in V$. 
+\end{itemize}
+
+The boundary condition for the density $\rho$ prescribed on inlet $\Gamma_I$ is
+formulated in the so-called weak integral sense\footnote{See Feistauer et al.
+\cite[p. 373]{feistauer}.} 
+\[
+\begin{split}
+(\DADt &\rho,q) + e(\rho,v,q) + \alpha(v-w,\rho,q) 
+- \gamma \int_{\Gamma_I}{\rho v_D \cdot nq}\dA = \\
+&- \gamma \int_{\Gamma_I}{\rho_D v_D \cdot nq}\dA \qquad \forall q\in Q,
+\end{split}
+\]
+where $\gamma$ is a suitable parameter.
+
+\section{Discrete problem}
+
+Let $\{\mathcal T_h\}_{h \in (0,T)}$ be a regular system of triangulations of
+the domain $\widetilde\Omega=\Omega_t\times\{t\}$. In a time interval $[0,T]$ we construct a
+partition
+$t_n=n\tau, n=0,\ldots,r$ with time step $\tau$. For a function $f$ defined in 
+$\widetilde\Omega$, we set 
+\[
+\begin{split}
+\DADt f(y_n,t_n) &= \ddt\tilde{f}(X,t_n) \\
+&\approx(\tilde{f}(X,t_n)-\tilde{f}(X,t_{n-1}))/\tau \\
+&= (f(y_n,t_n)-f(y_{n-1},t_{n-1}))/\tau, 
+\end{split}
+\]
+where $y_n=\mathcal A_{t_n}(X)$.
+
+For simplicity, we will write $f^n=f(y_n,t_n)$ and $\dadt
+f^n=(f^n-f^{n-1})/\tau$.
+
+The approximate solution will be sought at each time level $t_n$ in finite
+dimensional spaces of finite elements $X_h$ and $Q_h$. \\
+We set $Q_h=X_h^{(m)}$, $X_h=[X_h^{(k)}]^2$, $V_h=\{v_h \in [X_h^{(k)}]^2;\,
+v_h|_{\Gamma_D}=0\}$, where $X_h^{(p)}=\{v_h\in C(\bar{\Omega}_h);\, v_h|_K \in
+P^p(K) \;\forall K\in \mathcal T_h \}$ and $P^p(K)$ is a set of all polynomials
+on $K$ of degree $\leq p$. 
+
+
+First, we approximate the spaces $V$ and $Q$ by $V_h$ and $Q_h$ respectively. We
+use the approximations 
+\[
+\begin{split}
+v^n &\approx v_h^n \in V_h, \\
+\rho^n &\approx \rho_h^n \in Q_h, \\
+\DADt v^n &\approx (v^n-v^{n-1})/\tau \approx (v_h^n-v_h^{n-1})/\tau = \dadt
+v_h^n, \\
+\DADt \rho^n &\approx (\rho^n-\rho^{n-1})/\tau \approx
+(\rho_h^n-\rho_h^{n-1})/\tau = \dadt \rho_h^n 
+\end{split}
+\]
+
+Moreover, we will use the streamline diffusion test function 
+$$q_h+\delta q_{h\beta} \quad \mbox{with } q_{h\beta}=(v_h^{n-1},\grad{q_h})$$ 
+for suitable constant $\delta>0$, which will be used instead of $q_h$ to avoid
+Gibb's phenomenon in the numerical solution\footnote{See Feistauer et al.
+\cite[p. 346]{feistauer}}. 
+
+Let $v_h^* \in X_h$ be the approximation of $v^*$, we can use the approximation 
+\[
+\begin{array}{ll}
+v_h^*(P_i,t)=v_D(P_i,t) \quad &\forall P_i\in\Gamma_I\cup\Gamma_W, \\
+v_h^*(P_i,t)=w(P_i,t) \quad &\forall P_i\in\Gamma_{W_t}, \\
+v_h^*(P_i,t)=0 \quad &\forall P_i\in\Omega_t. \\
+\end{array}
+\]
+
+
+We obtain the following formulation of the discrete problem:\\
+Find $v_h^n \in X_h$, such that $v_h^n - v_h^{*n} \in V_h$; $\rho_h^n \in Q_h$ and
+the following equations holds:
+
+\eq{si-discrete-problem}{
+\begin{split}
+(\rho_h^{n-1}\; &\dadt v_h^n,u_h) + d(\rho_h^{n-1},v_h^{n-1}-w_h^{n-1},v_h^n,u_h) + a(v_h^n,u_h) \\
+&=b(u_h,\pi_h^{n-1}) + (b_h^{n-1},u_h) + \int_{\Gamma_O}{\pi_{ref}\,u_h \cdot
+n}\dA \qquad \forall u_h \in V_h, \\ 
+(\dadt &\rho_h^n,q_h) + e(\rho_h^{n-1},v_h^n,\sdtf) \\
+&+\alpha(v_h^{n-1}-w_h^{n-1},\rho_h^n,\sdtf) 
+- \gamma \int_{\Gamma_I}{\rho_h^n v_D^n \cdot nq_h}\dA \\
+&= -\gamma \int_{\Gamma_I}{\rho_D^n v_D^n \cdot nq_h}\dA \qquad\forall q_h \in Q_h, \\
+&\pi_h^n = \widehat\pi(\rho_h^n).
+\end{split}}
+
+We can write 
+$$v_h^n=v_h^{*n}+z_h^n, \quad \mbox{with } z_h^n \in V_h.$$
+Assuming that $u_h^{n-1},\rho_h^{n-1},\pi_h^{n-1},w_h^{n-1}$ are known, using
+substitution for $v_h^n$, we get a linear system for parameters determining
+the unknown functions $z_h^n$ and $\rho_h^n$.
+
+System \eref{si-discrete-problem} can be solved in two separate steps. First, we
+find $v_h^n$ by solving the first equation. Using the result, we can find
+$\rho_h^n$ by solving the second one.

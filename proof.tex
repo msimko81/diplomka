@@ -1,0 +1,163 @@
+\chapter{Existence of approximate solution}
+ 
+Assume homogenous Dirichlet condition $v_D=0$ given on the whole boundary $\partial \Omega$. We obtain equations
+
+\eq{si-discrete-problem-homogenous}{
+\begin{split}
+(\rho_h^{n-1}\; &\dadt v_h^n,u_h) + d(\rho_h^{n-1},v_h^{n-1}-w_h^{n-1},v_h^n,u_h)
++ a(v_h^n,u_h) \\ &=b(u_h,\pi_h^{n-1}) + (b_h^{n-1},u_h) \qquad \forall u_h \in V_h, \\ 
+(\dadt &\rho_h^n,q_h) + e(\rho_h^{n-1},v_h^n,\sdtf) \\
+&+\alpha(v_h^{n-1}-w_h^{n-1},\rho_h^n,\sdtf) = 0 \qquad\forall q_h \in Q_h.
+\end{split}}
+
+For this problem, we will prove existence of approximate solution on next time level under assumptions of existence 
+of approximate solution from previous time level and constraints for time step
+$\tau$ and for constant $\delta$.
+
+\tu{Theorem}\footnote{See. Feistauer et al. \cite[p. 371]{feistauer}.}
+Let $v_h^{n-1}$,$\rho_h^{n-1}$ be approximate solution in time level $t_{n-1}$,
+such that $\rho_h^{n-1} \ge \rho_0$, where $\rho_0 > 0$ is a positive constant.
+Denote 
+\eq{si-proof-predpoklady1}{
+K_{n-1} = \max \{ \n v_h^{n-1}\n_\infty,\n
+v_h^{n-1}-w_h^{n-1}\n_\infty,\n\rho_h^{n-1}\n_\infty \}. }
+Further, let
+\eq{si-proof-predpoklady2}{
+\tau \le \frac{\mu\rho_0}{2K_{n-1}^4}, \quad 
+\frac{3}{2}\tau \le \delta \le \frac{\mu}{4\,N\,K_{n-1}^2} .
+}
+Then there exists a unique solution $v_h^n$,\,$\rho_h^n$ of problem
+\eref{si-discrete-problem-homogenous} on time level $t_n$.
+\begin{proof}
+
+Denote forms
+
+\eq{si-proof-define-forms}{
+\begin{split}
+\tilde a(v,\rho,u,q)&=\frac{1}{\tau}\,(\rho_h^{n-1}\,v,u) +
+d(\rho_h^{n-1},v_h^{n-1}-w_h^{n-1},v,u) + a(v,u) \\
+&+ \frac{1}{\tau}\,(\rho,q) + e(\rho_h^{n-1},v,q+\delta q_\beta) 
++ \alpha(v_h^{n-1}-w_h^{n-1},\rho,q+\delta q_\beta) \,, \\
+F(u,q) &= b(u,\pi_h^{n-1}) + (b_h^{n-1},u) +
+\frac{1}{\tau}\,(\rho_h^{n-1}v_h^{n-1},u) + \frac{1}{\tau}\, (\rho_h^{n-1},q)
+\end{split}}
+
+Problem \eref{si-discrete-problem-homogenous} with unknowns
+$v=v_h^n\in V_h$, $\rho=\rho_h^n\in Q_h$ can be written in a form
+
+\eq{si-proof-simple-equation}{
+\tilde a(v,\rho,u,q)=F(u,q) \quad \forall u\in V_h, \forall q\in Q_h.
+}
+
+To prove existence and uniqueness, we show that $\tilde a$ is positively definite. 
+
+We will use Cauchy's inequality and Young's inequality in a form
+$\alpha\beta\leq\varepsilon\alpha^2+\beta^2/(4\varepsilon)$. For arbitrary
+$\varepsilon_1,\ldots\varepsilon_4>0$ we can write
+
+\eq{si-proof-odhady}{
+\begin{split}
+\frac{1}{\tau}\,(\rho_h^{n-1}v,v)&\geq\frac{\rho_0}{\tau}\,\n v\n^2 \,, \\
+|d(\rho_h^{n-1},v_h^{n-1}-w_h^{n-1},v,v)|&\leq\n\rho_h^{n-1}(v_h^{n-1}-w_h^{n-1})\n_\infty\,\n\grad
+v\n\,\n v\n \\
+&\leq\varepsilon_1\n\grad v\n^2 + \frac{K_{n-1}^4}{\varepsilon_1}\,\n v\n^2 \,,\\
+|\alpha(v_h^{n-1}-w_h^{n-1},\rho,\rho+\delta\rho_\beta)|&=|(\rho_\beta,\rho)+\delta\n\rho_\beta\n^2|\\
+&\leq\varepsilon_2\n\rho_\beta\n^2+\frac{1}{4\varepsilon_2}\,\n\rho\n^2+\delta\n\rho_\beta\n^2\\
+|e(\rho_h^{n-1},v,\rho+\delta\rho_\beta)|
+&\leq\varepsilon_3\n\grad v\n^2+\frac{N\,K_{n-1}^2}{4\varepsilon_3}\,\n\rho\n^2\\
+&+\varepsilon_4\n\grad v\n^2+\frac{N\,K_{n-1}^2\delta^2}{4\varepsilon_4}\n\rho_\beta\n^2. 
+\end{split}
+}
+
+Putting previous estimates together, we get
+
+\[
+\begin{split}
+\tilde a(v,\rho,v,\rho) \geq
+&\, \left( \frac{\rho_0}{\tau}-\frac{K_{n-1}^4}{4\varepsilon_1} \right) \n v\n^2\\ 
+&+(\mu-\varepsilon_1-\varepsilon_3-\varepsilon_4)\n\grad v\n^2 
++(\lambda+\mu)\n\dv v\n^2 \\
+&+\left(\delta-\varepsilon_2-\frac{N\,\delta^2\,K_{n-1}^2}{4\varepsilon_4}\right)\n\rho_\beta\n^2\\
+&+\left(\frac{1}{\tau}-\frac{1}{4\varepsilon_2}-\frac{N\,K_{n-1}^2}{4\varepsilon_3}\right)\n\rho\n^2.
+\end{split}
+\] 
+
+Let $\varepsilon_i=\mu/4$ for $i=1,3,4$, $\varepsilon_2=\delta/2$ and
+using \eref{si-proof-predpoklady2} we obtain
+
+\[
+\begin{split}
+\tilde a(v,\rho,v,\rho) \geq
+&\frac{\rho_0}{2\tau}\n v\n^2 +\frac{\mu}{4}\n\grad v\n^2+(\lambda+\mu)\n\dv v\n^2 \\ 
+&+\frac{\delta}{4}\n\rho_\beta\n^2 + \frac{1}{2\tau}\n\rho\n^2.
+\end{split}
+\] 
+
+Now, it is obvious that form $\tilde a$ is positively definite. Thus problem
+\eref{si-proof-simple-equation} has exactly one solution. 
+
+\end{proof}
+
+
+Let us assume generally nonzero Dirichlet boundary condition for velocity given on the whole boundary $\partial \Omega$. 
+Problem \eref{si-discrete-problem} will have a form
+
+\eq{si-discrete-problem-dirichlet}{
+\begin{split}
+(\rho_h^{n-1}\; &\dadt v_h^n,u_h) + d(\rho_h^{n-1},v_h^{n-1}-w_h^{n-1},v_h^n,u_h)
++ a(v_h^n,u_h) \\ &=b(u_h,\pi_h^{n-1}) + (b_h^{n-1},u_h) \qquad \forall u_h \in V_h, \\ 
+(\dadt &\rho_h^n,q_h) + e(\rho_h^{n-1},v_h^n,\sdtf) \\
+&+\alpha(v_h^{n-1}-w_h^{n-1},\rho_h^n,\sdtf) 
+- \gamma \int_{\Gamma_I}{\rho_h^n v_D^n \cdot nq_h}\dA \\
+&= -\gamma \int_{\Gamma_I}{\rho_D^n v_D^n \cdot nq_h}\dA \qquad\forall q_h \in Q_h, \\
+&\pi_h^n = \widehat\pi(\rho_h^n),
+\end{split}}
+
+Let $v^* \in H^1(\Omega_t)^2, v^*|_{\partial\Omega}=v_D$ be a realization of the boundary condition, 
+we find solution $v=v_h^n,\rho=\rho_h^n$, such that
+$v-v^* \in V_h,\rho\in Q_h$. Let $v=v^*+z$ for $z\in V_h$, we may write
+problem \eref{si-discrete-problem-dirichlet} in a form 
+
+\eq{si-simple-equation-dirichlet}{
+\begin{split}
+\tilde a(z+v^*,&\rho,u,q) - \gamma \int_{\Gamma_I}{\rho v_D^n \cdot nq}\dA \\
+&=F(u,q) - \gamma \int_{\Gamma_I}{\rho_D^n v_D^n \cdot nq}\dA
+ \quad \forall u\in V_h, \forall q\in Q_h,
+\end{split}
+}
+
+where we use denotation from the proof of previous theorem.
+
+Define following forms
+\[
+\begin{split}
+\hat a(z,\rho,u,q) &= \tilde a(z,\rho,u,q) 
+- \gamma \int_{\Gamma_I}{\rho v_D^n \cdot nq}\dA, \\
+\hat F(u,q) &= F(u,q) - \tilde a(v^*,\rho,u,q)
+- \gamma \int_{\Gamma_I}{\rho_D^n v_D^n \cdot nq}\dA. 
+\end{split}
+\]
+
+Problem \eref{si-simple-equation-dirichlet} will have this form
+\eq{si-simple-equation-dirichlet2}{
+\hat a(z,\rho,u,q)=\hat F(u,q) \quad \forall u\in V_h, \forall q\in Q_h
+}
+for unknowns $z\in V_h$ and $\rho\in Q_h$.
+
+
+\tu{Theorem}\footnote{See Feistauer et al. \cite[p. 374]{feistauer}.}
+Let assumptions from previous theorem hold. Moreover, assume $\gamma>0$ and let
+$v_D\cdot n<0$ on $\Gamma_I$. Let $v^* \in H^1(\Omega_t)^2$
+be the realization of boundary condition for velocity. Then, there exists a unique solution 
+$v=v_h^n$, $\rho=\rho_h^n$ of the problem
+\eref{si-discrete-problem-dirichlet}, 
+where $v-v^*\in V_h, \rho\in Q_h$. 
+\begin{proof}
+
+We need to show that $\hat a$ is positively definite.
+We may write $$\hat a(z,\rho,z,\rho) = \tilde a(z,\rho,z,\rho) - 
+\gamma \int_{\Gamma_I}{\rho^2 v_D^n \cdot n}\dA.$$
+Second term in righthand side is positive (under the assumptions of the theorem), form  $\tilde a$ is
+positively definite by the previous theorem.
+\end{proof}
+

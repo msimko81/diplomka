@@ -1,0 +1,520 @@
+\chapter{Existencia riešenia diskrétneho problému}
+ 
+Uvažujme prípad homogénnej úlohy s nulovou okrajovou podmienkou pre rýchlosť,
+$v_D=0$, zadanou na celej hranici $\partial \Omega$. Dostaneme rovnice
+
+\eq{si-discrete-problem-homogenous}{
+\begin{split}
+(\rho_h^{n-1}\; &\dadt v_h^n,u_h) + d(\rho_h^{n-1},v_h^{n-1}-w_h^{n-1},v_h^n,u_h)
++ a(v_h^n,u_h) \\ &=b(u_h,\pi_h^{n-1}) + (b_h^{n-1},u_h) \qquad \forall u_h \in V_h, \\ 
+(\dadt &\rho_h^n,q_h) + e(\rho_h^{n-1},v_h^n,\sdtf) \\
+&+\alpha(v_h^{n-1}-w_h^{n-1},\rho_h^n,\sdtf) = 0 \qquad\forall q_h \in Q_h.
+\end{split}}
+
+Pre túto úlohu dokážeme existenciu približného riešenia na ďalšej časovej
+vrstve za predpokladu existencie riešenia z predchádzajúcej časovej vrstvy a
+obmedzení pre veľkosť časového kroku $\tau$ a pre konštantu $\delta$.
+
+\tu{Veta}\footnote{Viď. Feistauer et al. \cite[p. 371]{feistauer}.}
+Nech $v_h^{n-1}$,$\rho_h^{n-1}$ je približné riešenie z časovej vrstvy $t_{n-1}$
+také, že $\rho_h^{n-1} \ge \rho_0$, kde $\rho_0 > 0$ je kladná konštanta.
+Označme 
+\eq{si-proof-predpoklady1}{
+K_{n-1} = \max \{ \n v_h^{n-1}\n_\infty,\n
+v_h^{n-1}-w_h^{n-1}\n_\infty,\n\rho_h^{n-1}\n_\infty \}. }
+Nech ďalej platí
+\eq{si-proof-predpoklady2}{
+\tau \le \frac{\mu\rho_0}{2K_{n-1}^4}, \quad 
+\frac{3}{2}\tau \le \delta \le \frac{\mu}{4\,N\,K_{n-1}^2} .
+}
+Potom existuje jednoznačné riešenie $v_h^n$,\,$\rho_h^n$ úlohy
+\eref{si-discrete-problem-homogenous} na časovej vrstve $t_n$.
+\begin{proof}
+
+Definujme formy
+
+\eq{si-proof-define-forms}{
+\begin{split}
+\tilde a(v,\rho,u,q)&=\frac{1}{\tau}\,(\rho_h^{n-1}\,v,u) +
+d(\rho_h^{n-1},v_h^{n-1}-w_h^{n-1},v,u) + a(v,u) \\
+&+ \frac{1}{\tau}\,(\rho,q) + e(\rho_h^{n-1},v,q+\delta q_\beta) 
++ \alpha(v_h^{n-1}-w_h^{n-1},\rho,q+\delta q_\beta) \,, \\
+F(u,q) &= b(u,\pi_h^{n-1}) + (b_h^{n-1},u) +
+\frac{1}{\tau}\,(\rho_h^{n-1}v_h^{n-1},u) + \frac{1}{\tau}\, (\rho_h^{n-1},q)
+\end{split}}
+
+Úloha \eref{si-discrete-problem-homogenous} potom pre neznáme
+$v=v_h^n\in V_h$, $\rho=\rho_h^n\in Q_h$ prejde v tvar
+
+\eq{si-proof-simple-equation}{
+\tilde a(v,\rho,u,q)=F(u,q) \quad \forall u\in V_h, \forall q\in Q_h.
+}
+
+Pre dôkaz existencie a jednoznačnosti riešenia tejto úlohy ukážeme pozitívnu
+definitnosť formy $\tilde a$.
+
+Použijeme Cauchyho nerovnosť a Youngovu nerovnosť v tvare
+$\alpha\beta\leq\varepsilon\alpha^2+\beta^2/(4\varepsilon)$. Pre ľubovoľné
+$\varepsilon_1,\ldots\varepsilon_4>0$ máme
+
+\eq{si-proof-odhady}{
+\begin{split}
+\frac{1}{\tau}\,(\rho_h^{n-1}v,v)&\geq\frac{\rho_0}{\tau}\,\n v\n^2 \,, \\
+|d(\rho_h^{n-1},v_h^{n-1}-w_h^{n-1},v,v)|&\leq\n\rho_h^{n-1}(v_h^{n-1}-w_h^{n-1})\n_\infty\,\n\grad
+v\n\,\n v\n \\
+&\leq\varepsilon_1\n\grad v\n^2 + \frac{K_{n-1}^4}{\varepsilon_1}\,\n v\n^2 \,,\\
+|\alpha(v_h^{n-1}-w_h^{n-1},\rho,\rho+\delta\rho_\beta)|&=|(\rho_\beta,\rho)+\delta\n\rho_\beta\n^2|\\
+&\leq\varepsilon_2\n\rho_\beta\n^2+\frac{1}{4\varepsilon_2}\,\n\rho\n^2+\delta\n\rho_\beta\n^2\\
+|e(\rho_h^{n-1},v,\rho+\delta\rho_\beta)|
+&\leq\varepsilon_3\n\grad v\n^2+\frac{N\,K_{n-1}^2}{4\varepsilon_3}\,\n\rho\n^2\\
+&+\varepsilon_4\n\grad v\n^2+\frac{N\,K_{n-1}^2\delta^2}{4\varepsilon_4}\n\rho_\beta\n^2. 
+\end{split}
+}
+
+Spojením predchádzajúcich odhadov dostaneme
+
+\[
+\begin{split}
+\tilde a(v,\rho,v,\rho) \geq
+&\, \left( \frac{\rho_0}{\tau}-\frac{K_{n-1}^4}{4\varepsilon_1} \right) \n v\n^2\\ 
+&+(\mu-\varepsilon_1-\varepsilon_3-\varepsilon_4)\n\grad v\n^2 
++(\lambda+\mu)\n\dv v\n^2 \\
+&+\left(\delta-\varepsilon_2-\frac{N\,\delta^2\,K_{n-1}^2}{4\varepsilon_4}\right)\n\rho_\beta\n^2\\
+&+\left(\frac{1}{\tau}-\frac{1}{4\varepsilon_2}-\frac{N\,K_{n-1}^2}{4\varepsilon_3}\right)\n\rho\n^2.
+\end{split}
+\] 
+
+Zvoľme teraz $\varepsilon_i=\mu/4$ pre $i=1,3,4$, $\varepsilon_2=\delta/2$ a
+využitím predpokladu \eref{si-proof-predpoklady2} dostaneme
+
+\[
+\begin{split}
+\tilde a(v,\rho,v,\rho) \geq
+&\frac{\rho_0}{2\tau}\n v\n^2 +\frac{\mu}{4}\n\grad v\n^2+(\lambda+\mu)\n\dv v\n^2 \\ 
+&+\frac{\delta}{4}\n\rho_\beta\n^2 + \frac{1}{2\tau}\n\rho\n^2.
+\end{split}
+\] 
+
+Vidíme, že forma $\tilde a$ je pozitívne definitná a úloha
+\eref{si-proof-simple-equation} má práve jedno riešenie. 
+
+\end{proof}
+
+
+Uvažujme teraz obecne nenulovú Dirichletovu okrajovú podmienku pre rýchlosť
+zadanú na celej hranici $\partial \Omega$. 
+Rovnice \eref{si-discrete-problem} prejdú v tvar:
+
+\eq{si-discrete-problem-dirichlet}{
+\begin{split}
+(\rho_h^{n-1}\; &\dadt v_h^n,u_h) + d(\rho_h^{n-1},v_h^{n-1}-w_h^{n-1},v_h^n,u_h)
++ a(v_h^n,u_h) \\ &=b(u_h,\pi_h^{n-1}) + (b_h^{n-1},u_h) \qquad \forall u_h \in V_h, \\ 
+(\dadt &\rho_h^n,q_h) + e(\rho_h^{n-1},v_h^n,\sdtf) \\
+&+\alpha(v_h^{n-1}-w_h^{n-1},\rho_h^n,\sdtf) 
+- \gamma \int_{\Gamma_I}{\rho_h^n v_D^n \cdot nq_h}\dA \\
+&= -\gamma \int_{\Gamma_I}{\rho_D^n v_D^n \cdot nq_h}\dA \qquad\forall q_h \in Q_h, \\
+&\pi_h^n = \widehat\pi(\rho_h^n),
+\end{split}}
+
+Nech $v^* \in H^1(\Omega_t)^2, v^*|_{\partial\Omega}=v_D$ je realizácia okrajovej
+podmienky pre rýchlosť, hľadáme potom riešenie $v=v_h^n,\rho=\rho_h^n$ tak, že
+$v-v^* \in V_h,\rho\in Q_h$. Ak označíme $v=v^*+z$ pre $z\in V_h$, úlohu
+\eref{si-discrete-problem-dirichlet} môžme prepísať do tvaru 
+
+\eq{si-simple-equation-dirichlet}{
+\begin{split}
+\tilde a(z+v^*,&\rho,u,q) - \gamma \int_{\Gamma_I}{\rho v_D^n \cdot nq}\dA \\
+&=F(u,q) - \gamma \int_{\Gamma_I}{\rho_D^n v_D^n \cdot nq}\dA
+ \quad \forall u\in V_h, \forall q\in Q_h,
+\end{split}
+}
+
+kde sme využili označenie zavedené v dôkaze predchádzajúcej vety.
+
+Definujme formy 
+\[
+\begin{split}
+\hat a(z,\rho,u,q) &= \tilde a(z,\rho,u,q) 
+- \gamma \int_{\Gamma_I}{\rho v_D^n \cdot nq}\dA, \\
+\hat F(u,q) &= F(u,q) - \tilde a(v^*,\rho,u,q)
+- \gamma \int_{\Gamma_I}{\rho_D^n v_D^n \cdot nq}\dA. 
+\end{split}
+\]
+
+Úloha \eref{si-simple-equation-dirichlet} prejde v tvar
+\eq{si-simple-equation-dirichlet2}{
+\hat a(z,\rho,u,q)=\hat F(u,q) \quad \forall u\in V_h, \forall q\in Q_h
+}
+pre neznáme $z\in V_h$ a $\rho\in Q_h$.
+
+
+\tu{Tvrdenie}\footnote{Viď Feistauer et al. \cite[p. 374]{feistauer}.}
+Nech platia predpoklady predchádzajúcej vety. Predpokladajme naviac $\gamma>0$ a
+$v_D\cdot n<0$  na $\Gamma_I$. Nech $v^* \in H^1(\Omega_t)^2$
+je realizácia okrajovej podmienky pre rýchlosť. Potom existuje jednoznažné
+riešenie $v=v_h^n$, $\rho=\rho_h^n$ úlohy
+\eref{si-discrete-problem-dirichlet}, 
+kde $v-v^*\in V_h, \rho\in Q_h$. 
+\begin{proof}
+
+Pre platnosť tvrdenia potrebujeme ukázať pozitívnu definitnosť formy $\hat a$.
+Je $$\hat a(z,\rho,z,\rho) = \tilde a(z,\rho,z,\rho) - 
+\gamma \int_{\Gamma_I}{\rho^2 v_D^n \cdot n}\dA.$$
+Druhý člen na pravej strane je podľa predpokladov tvrdenia kladný, forma $\tilde a$ je
+pozitívne definitná podľa predchádzajúcej vety.
+\end{proof}
+
+
+
+\chapter{Konštrukcia ALE zobrazenia pre izolovaný profil}
+
+Pri konštrukcii ALE zobrazenia máme pomerne veľkú voľnosť. Pre praktické
+počítanie sa zvykne používať metóda, v ktorej sa oblasť rozdelí na tri časti.
+Prvá časť je okolie profilu, ktoré transformujeme spolu s profilom ako tuhé
+teleso. Druhá časť, vypĺňajúca okolie vonkajšej hranice, sa transformuje 
+identickým zobrazením. Transformácia tretej časti, ktorá sa nachádza medzi
+predchádzajúcimi dvoma, bude kombináciou prvých dvoch transformácií tak, aby
+sa na každej strane hladko napojila. 
+
+\begin{figure}[h]
+  \begin{center}
+    \img{ale.png}
+    \caption{Rôzne časti oblasti v konštrukcii ALE zobrazenia}
+    \label{si-im-ale=domains}
+  \end{center}
+\end{figure}
+
+Uveďme analytickú konštrukciu výsledného ALE zobrazenia. Transformácia bodov profilu
+bude pre náklon $\alpha$ a vertikálnu výchylku $h$ popísaná nasledujúcim
+zobrazením 
+
+\[
+H(X,Y)=
+\left( \begin{array}{cc}
+\cos \alpha & \sin \alpha \\
+-\sin \alpha & \cos \alpha \end{array} \right) 
+\cdot \left( \begin{array}{c}
+X-X_{EA} \\
+Y-Y_{EA} \end{array} \right)
++ \left( \begin{array}{c}
+X_{EA} \\
+Y_{EA} \end{array} \right)
++ \left( \begin{array}{c}
+0 \\
+h \end{array} \right),
+\]
+kde $(X,Y)$ sú referenčné súradnice transformovaného bodu a 
+$(X_{EA},Y_{EA})$ sú referenčné súradnice osi okolo ktorej sa profil otáča.\\
+Identické zobrazenie budeme značiť $Id(X,Y)=(X,Y)$. 
+Definujme ďalej váhové funkcie $\xi$, $\theta$ v závislosti na
+$R=R(X,Y),R_1,R_2$ predpisom
+
+\[
+\begin{split}
+\xi(R)&=\min\left(\max\left(0,\frac{R-R_1}{R_2-R_1}\right),1\right) \\
+\theta(R)&=\frac{1}{2}\left(\cos(\xi(R)\,\pi)+1\right)
+\end{split}
+\]
+ 
+ Pomocou predchádzajúcich funkcií môžme zostrojiť výsledné ALE zobrazenie
+ predpisom 
+ 
+ $$\mathcal A_t(X,Y)=\theta(R)\,H(X,Y)+(1-\theta(R))\,Id(X,Y)$$
+ 
+ Pre zobrazenie $R=R(X,Y)$ máme opäť možnosť voľby (určí sa ním tvar oblasti,
+ ktorá sa bude transformovať ako pevné teleso). Pre letecký profil je výhodné
+ použiť elipsu, pre ktorú tak máme 
+ $R(X,Y)=\sqrt{\frac{X^2}{a^2}+\frac{Y^2}{b^2}}$, kde $a,b>0$ sú jej poloosi.
+ Dodajme ešte, že konštanty $R_1$ a $R_2$ určia veľkosť oblasti $\Omega_3$.  
+ 
+\chapter{Riešenie diskrétneho problému}
+
+Našou úlohou je zostrojiť priestory $Q_h$ a $X_h$, v ktorých budeme hľadať
+približné riešenie. K tomu použijeme Galerkinovu metódu, tj. prevedieme
+trianguláciu oblasti na konečné elementy $\mathcal T_h$ a definujeme na tejto
+triangulácii bázové funkcie, ktoré vytvoria bázy príslušných priestorov. 
+
+Keď máme k dispozícii približné priestory $Q_h$ a $X_h$, môžme pristúpiť k
+riešeniu približného problému. Pre rýchlosť a pre tlak vytvoríme v každom
+časovom intervale sústavu lineárnych rovníc, ktorých riešením dostaneme
+približné hodnoty $v_h^n$ a $\rho_h^n$. Voľba numerickej schémy
+\eref{si-discrete-problem} nám umožňuje oddeliť rovnice pre rýchlosť a
+pre tlak na dve samostatné sústavy a každú z nich riešiť oddelene.
+
+
+\section{Triangulácia oblasti}
+
+Na trianguláciu oblasti sme použili polygonálnu trianguláciu, letecký profil sme
+aproximovali po častiach lineárnou lomenou krivkou. Výpočtová oblasť je tak
+tvorená trojuholníkovými konečnými elementami $K\in\mathcal T_h$ (viď \iref{si-im-mesh}).
+
+Na konštrukciu a adaptívne zjemňovanie triangulácie bol využitý software
+ANGENER\footnote{http://www.karlin.mff.cuni.cz/~dolejsi/angen/angen.htm}. 
+
+\begin{figure}[h]
+  \begin{center}
+    \img{mesh.png}
+    \caption{Príklad izotropnej siete}
+    \label{si-im-mesh}
+  \end{center}
+\end{figure}
+
+
+\section{Voľba bázových funkcií}
+
+
+Pri riešení úlohy sme použili lineárne konečné prvky pre tlak aj pre rýchlosť.
+
+Popíšeme najprv voľbu bázových funkcií priestoru $Q_h$. Pre každý vrchol~$P$
+triangulácie $\mathcal T_h$ definujeme jednu bázovú funkciu $q_h^P$ hodnotou vo
+vrchole $P$: $q_h^P(P) = 1$, pre každý ďalší vrchol $P'$ definujeme
+$q_h^P(P') = 0$. Keďže $q_h^P$ je lineárna na každom elemente, je týmto určená jednoznačne. 
+Nosičom takto definovanej bázovej funkcie sú len elementy obsahujúce bod $P$ ako
+svoj vrchol. Zároveň je daná aj dimenzia priestoru $Q_h$. Ak označíme počet vrcholov
+triangulácie $N_h = \# \mbox{vrcholov} \mathcal T_h$, potom $\dim Q_h = N_h$.
+
+Bázové funkcie priestoru $X_h$ volíme podobne. Pre každý vrchol $P$ definujeme
+dve bázové funkcie $u_{hx}^P$ a $u_{hy}^P$, kde $u_{hx}^P = (q_h^P,0)$ a 
+$u_{hy}^P = (0,q_h^P)$, kde $q_h^P$ je príslušná bázová funkcia priestoru $Q_h$.
+Nosičom takto definovaných bázových funkcií sú opäť len elementy obsahujúce
+vrchol $P$ a dimenzia priestoru $\dim X_h = 2N_h$.
+
+Vrcholy triangulácie a im odpovedajúce bázové funkcie očíslujme:
+$$P_i,q_h^i,u_{hx}^i,u_{hy}^i,\;i=1,\ldots N_h.$$
+
+Približné riešenia $\rho_h$ a $v_h$ sú lineárnymi kombináciami príslušných bázových
+funkcií: 
+\eq{si-rozpis-pribl-ries-do-bazy}{
+\begin{split}
+\rho_h &= \sum_{i=1}^{N_h} \alpha_i \, q_h^i \,, \\
+v_h = &\sum_{i=1}^{N_h} (\beta_i^x \, u_{hx}^i + \beta_i^y \, u_{hy}^i) \,. 
+\end{split}}
+
+Hodnota približného riešenia $\rho_h$ vo vrchole $P_i$ je tak daná koeficientom
+$\alpha_i$, podobne hodnota x-ovej a y-ovej zložky približného riešenia $v_h$ v
+uvažovanom vrchole je daná koeficientami $\beta_i^x$ a $\beta_i^y$.
+
+Pre ďalšie zjednodušenie zápisu použime označenie
+\[
+\begin{array}{lll}
+\beta_i=\beta_k^x, & u_h^i=u_{hx}^k, & \mbox{pre } i=2k-1 \\
+\beta_i=\beta_k^y, & u_h^i=u_{hy}^k, & \mbox{pre } i=2k, \quad k=1\ldots N_h.
+\end{array}
+\]
+
+Približné riešenie $v_h$ tak môžme zapísať ako lineárnu kombináciu
+$$v_h = \sum_{i=1}^{2N_h} \beta_i \, u_h^i.$$
+
+\section{Zostavenie sústav lineárnych rovníc pre výpočet rýchlosti a tlaku}
+
+Popíšeme zostavenie sústav lineárnych rovníc pre výpočet rýchlosti a tlaku pre
+prípad pevnej oblasti. V tomto prípade sa rovnice \eref{si-discrete-problem}
+zjednodušia, $\DADt f(y,t) = \ddt f(y,t),$ a $w = 0$.
+
+Uvažované rovnice tak majú nasledujúci tvar
+
+\eq{si-discrete-problem-without-ALE}{
+\begin{split}
+(\rho_h^{n-1}\; &d_t v_h^n,u_h) + d(\rho_h^{n-1},v_h^{n-1},v_h^n,u_h) + a(v_h^n,u_h) \\
+&=b(u_h,\pi_h^{n-1}) + (b_h^{n-1},u_h) + \int_{\Gamma_O}{\pi_{ref}\,u_h \cdot
+n}\dA \qquad \forall u_h \in V_h, \\ 
+(d_t &\rho_h^n,q_h) + e(\rho_h^{n-1},v_h^n,\sdtf) \\
+&+\alpha(v_h^{n-1},\rho_h^n,\sdtf) 
+- \gamma \int_{\Gamma_I}{\rho_h^n v_D^n \cdot nq_h}\dA \\
+&= -\gamma \int_{\Gamma_I}{\rho_D^n v_D^n \cdot nq_h}\dA \qquad\forall q_h \in Q_h, \\
+&\pi_h^n = \widehat\pi(\rho_h^n),
+\end{split}}
+
+kde $d_t \rho_h^n = (\rho_h^n - \rho_h^{n-1})/\tau$, $d_t v_h^n = (v_h^n -
+v_h^{n-1})/\tau$. 
+
+Rozpísaním diferencií $d_t\rho_h^n$, $d_t v_h^n$ a rozpísaním $\rho_h^n$,
+$v_h^n$ ako lineárnych kombinácií bázových funkcií, kde píšeme $u_i=u_h^i$ a 
+$q_i=q_h^i$, dostaneme 
+
+\eq{si-discrete-problem-without-ALE-rozpisane}{
+\begin{split}
+\sum_{i=1}^{2N_h} &\,\beta_i \, \left( \fr{1}{\tau}\,(\rho_h^{n-1}\,u_i,u_j) + 
+d(\rho_h^{n-1},v_h^{n-1},u_i,u_j) + a(u_i,u_j) \right) \\
+&= \fr{1}{\tau}\,(\rho_h^{n-1}\,v_h^{n-1},u_j) +
+b(u_j,\pi_h^{n-1}) + (b_h^{n-1},u_j) \\
+&+\int_{\Gamma_O}{\pi_{ref}\,u_j \cdot n}\dA \qquad \forall j=1\ldots 2N_h,
+\\ \sum_{i=1}^{N_h} &\,\alpha_i \, \left( \fr{1}{\tau}\,(q_i,q_j) +
+\alpha(v_h^{n-1},q_i,\sdf{j}) 
+- \gamma \int_{\Gamma_I}{q_i v_D^n \cdot nq_j}\dA \,\right) \\
+&= \fr{1}{\tau}\,(\rho_h^{n-1},q_j) - e(\rho_h^{n-1},v_h^n,\sdf{j}) \\
+&-\gamma \int_{\Gamma_I}{\rho_D^n v_D^n \cdot nq_j}\dA \qquad\forall j=1\ldots N_h,
+\\ &\pi_h^n = \widehat\pi(\rho_h^n),
+\end{split}}
+
+
+Uvedené rovnice tvoria systém $2N_h$ lineárnych rovníc pre $2N_h$ neznámych
+koeficientov $\beta_i$ a systém $N_h$ lineárnych rovníc pre $N_h$ neznámych
+koeficientov $\alpha_i$. 
+
+Ich riešením dostaneme priamo hodnoty približného riešenia $v_h$ a $\rho_h$ v
+príslušných vrcholoch.
+  
+Výhodou použitej Galerkinovej metódy je, že každá bázová funkcia má malý nosič.
+Pri výpočte jednotlivých koeficientov matíc tuhosti a vektorov pravých strán 
+nám tak stačí počítať len diagonálne koeficienty a koeficienty odpovedajúce
+vrcholom triangulácie, ktoré sú spojené stranou jedného z elementov. Ostatné
+koeficienty matíc tuhosti budú nulové, nakoľko pre takéto dvojice je na každom
+prvku vždy aspoň jedna z testovacích funkcií $u_i, u_j$ resp. $q_i,q_j$ nulová.   
+Dostávame tak pre rýchlosť aj pre tlak sústavy s riedkymi maticami tuhosti. 
+
+\section{Riešenie lineárnych sústav}
+
+Na riešenie lineárnych sýstav \eref{si-discrete-problem-without-ALE-rozpisane}
+sme použili priamy riešič pre riedke matice
+PARDISO\footnote{http://www.pardiso-project.org/index.html}. Tento riešič pracuje pre
+symetrické aj nesymetrické sústavy a je vhodný pre paralelné
+spúštanie. Jeho veľkou výhodou je pomerne malá pamäťová náročnosť a vysoká
+rýchlosť (výpočty tak mohli byť prevádzané na bežne dostupnom PC v rozumnom čase).
+
+\chapter{Príklady}
+
+Previedli sme niektoré numerické experimenty pre prípad kanála, vnútri ktorého
+je nepohybujúci sa profil. Zmena uhlu nábehu profilu pre rôzne experimenty 
+je riešená zadávaním rôznej okrajovej podmienky pre rýchlosť.  
+
+Voľba oblasti je znázornená na obrázku \ref{si-im-oblast}
+\begin{figure}[h]
+  \begin{center}
+    \img{oblast.png}
+    \caption{Voľba výpočtovej oblasti}
+    \label{si-im-oblast}
+  \end{center}
+\end{figure}
+
+Prvý experiment sme previedli s nasledovnými vstupnými parametrami:\\\\
+$\mu = 1$ \\
+$\lambda = -\frac{2}{3}\mu$ \\
+$\rho_{ref} = 1$ \\
+$\pi(\rho) = 1$ \\
+$v_{ref} = (1,0)$ \\
+$\tau = 0.001$ \\
+$\delta = \frac{3}{2}\tau$ \\
+
+Pre dané parametre dostávame veľkosť Reynoldsovho čísla
+$$Re=\frac{\rho_{ref}\,v_{ref}}{\mu} = 1$$ (uvažovaná charakteristická dĺžka
+profilu je $l=1$).  
+
+
+Počiatočné podmienky pre rýchlosť a tlak volíme $v_0=v_{ref}$, resp.
+$\rho_0=\rho_{ref}$. Okrajovú podmienku pre rýchlosť na vstupe a na hornej a
+spodnej časti kanála volíme $v_D=v_{ref}$, na profile predpokladáme nulovú
+rýchlosť(vzhľadom k profilu). Hustotu predpisujeme na vstupe hodnotou $\rho_D=\rho_{ref}$. 
+
+
+Z výsledkov experimentu vidno spojitú zmenu rozdelenia hustoty (a teda aj tlaku) v
+čase aj v priestore. V prednej časti profilu podľa očakávania dôjde k zvýšeniu
+tlaku, v chvostovej časti dochádza k jeho zníženiu. Nábeh trvá približne pol
+sekundy, potom sa riešenie stabilizuje a mení sa len minimálne.
+
+\begin{figure}[h]
+  \begin{center}
+    \img{mesh-adapt.png}
+    \caption{Adaptovaná sieť zachycujúca zmenu rýchlosti v okolí profilu}
+    \label{si-im-mesh-adapt}
+  \end{center}
+\end{figure}
+
+\begin{figure}[h]
+  \begin{center}
+    \img{hustota1.png}
+    \caption{Rozdelenie hustoty pre prípad $\alpha=0$ v čase $t=1$}
+    \label{si-im-hustota1}
+  \end{center}
+\end{figure}
+
+\begin{figure}[h]
+  \begin{center}
+    \img{hustota2.png}
+    \caption{Rozdelenie hustoty pre prípad $\alpha=\pi/10$ v čase $t=0.4$}
+    \label{si-im-hustota2}
+  \end{center}
+\end{figure}
+
+\begin{figure}[h]
+  \begin{center}
+    \img{prudnice1.png}
+    \caption{Zobrazenie prúdnic rýchlosti pre prípad $\alpha=0$ v čase $t=1$}
+    \label{si-im-prudnice1}
+  \end{center}
+\end{figure}
+
+\begin{figure}[h]
+  \begin{center}
+    \img{prudnice2.png}
+    \caption{Zobrazenie prúdnic rýchlosti pre prípad $\alpha=\pi/10$ v čase $t=0.4$}
+    \label{si-im-prudnice2}
+  \end{center}
+\end{figure}
+
+Prevádzali sme aj experimenty pre reálne dáta odpovedajúce prúdeniu vzduchu,
+tlak sme počítali zo vzťahu $\pi(\rho)=c\,\rho^\kappa$. Vstupné parametre boli nasledovné:\\\\
+$\mu = 1.8\cdot 10^{-5}$ \\
+$\lambda = -\frac{2}{3}\mu$ \\
+$\rho_{ref} = 1.20$ \\
+$\pi(\rho)=c\,\rho^\kappa$ \\
+$c=78500$ \\
+$\kappa=1.4$ \\
+$\tau = 0.001$ \\
+$\delta = \frac{3}{2}\tau$ \\
+
+Referenčnú rýchlosť sme volili v rôznych experimentoch voľbou Reynoldsovho čísla
+z rozmedzia $Re=10^1\ldots10^6$. Pri takýchto vstupných dátach prestal výpočet
+fungovať. Pomerne rýchlo (niekoľko časových krokov) dochádzalo v riešení k
+veľkému rozdielu medzi minimálnym a maximálnym tlakom, ako aj medzi minimálnou a
+maximálnou rýchlosťou a spočítané riešenie nemalo žiaden fyzikálny význam.
+Skúšali sme meniť parameter $\delta$ v rozmedzí danom predpokladmi
+\eref{si-proof-predpoklady2}, ale bezvýsledne. 
+
+Z predpokladov \eref{si-proof-predpoklady2} vyplýva aj ohraničenie pre časový
+krok.\\ 
+Pre $Re=10^3$ dostávame horný odhad pre časový krok rovný $\tau=10^{-5}$,
+pre vyššie Reynoldove čísla možná veľkosť časového kroku rapídne klesá (pre
+$Re=10^6$ je už $\tau=10^{-9}$). 
+Previedli sme výpočty pre časové kroky $\tau=0.0001$ a $\tau=0.00001$, ale k
+získaniu rozumných výsledkov to neviedlo.   
+Pre takéto malé časové kroky zrejme vo výpočte začali prevládať zaokrúhľovacie
+chyby a tým bolo znehodnotené. Aj v prípade eliminácie zaokrúhľovacích chýb
+použitím presnejšej aritmetiky by sme však narazili na nemožnosť spočítať
+riešenie na dlhšom časovom intervale v rozumnej dobe, nakoľko časový krok pre
+jednu iteráciu je veľmi malý.
+
+\chapter{Diskusia}
+
+Pri numerickom experimentovaní na reálnych vstupných dátach úlohy sme rýchlo
+narazili na obmedzenia pre časový krok vyplývajúce z dôkazu existencie
+približného riešenia. Problém sa dá čiastočne vyriešiť použitím presnejšej
+aritmetiky výpočtu, ale len za cenu neúmerného predĺženia výpočtu. 
+
+Lepšie riešenie spočíva v zvýšení rádu použitých konečných prvkov, nakoľko v
+experimentoch používame len lineárne prvky $P^1/P^1$ pre rýchlosť aj pre tlak.
+Tento krok by mohol pomôcť hlavne k presnejšiemu výpočtu rýchlosti, s ktorou
+boli najväčšie problémy. 
+
+Ďalšie zlepšenie je možné v tvorbe rôznych triangulácií pre rýchlosť a pre tlak.
+V prevedených experimentoch sme počítali tlak pre sieť adaptovanú na rozloženie
+rýchlosti. Takáto sieť je veľmi hustá v okolí profilu, pretože tam dochádza k
+veľkým zmenám rýchlosti. Lenže tlak sa v okolí profilu správa spojite a
+počítanie na hustej sieti tak zbytočne predĺži dobu výpočtu. 
+
+Paradoxne najmenšie problémy boli s riešením vzniknutých lineárnych sústav.
+Použitý software pracoval efektívne a môžme ho doporučiť. Experimentovali sme
+aj s veľmi hustými sieťami s počtom vrcholov $N_h=40000$, pre ktoré vzniknutá
+matica tuhosti pre rýchlosť mala $80000$ riadkov, a ani pre takéto dáta nebolo
+riešenie lineárnej sústavy úzkym hrdlom výpočtu.
+ 
+\chapter{Záver}
+
+V tejto práci sme ukázali odvodenie Navier-Stokesových rovníc modelu
+stlačiteľnej barotropickej tekutiny a popisu metódy pre úlohu s premennou
+hranicou. 
+Ukázali sme existenciu a jednoznačnosť približného riešenia pre prípad
+Dirichletovej okrajovej podmienky.
+Ďalej sme previedli numerické experimenty pre prípad pevnej hranice a overili
+sme nutnosť splnenia predpokladov pre voľbu časového kroku vyplývajúcich z
+dôkazu existencie riešenia.

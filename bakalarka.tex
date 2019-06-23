@@ -1,0 +1,630 @@
+\chapter{Matematické pojmy a značenia}
+
+V nasledujúcom texte budeme používať toto značenie: 
+
+Uvažovaný priestor bude euklidovský priestor $\mathcal E$ nad vektorovým 
+priestorom $\mathcal V$.
+
+Pojem \tu{tenzor} bude znamenať lineárne zobrazenie z
+$\mathcal V$ do $\mathcal V$. Označme nasledovné množiny tenzorov: \[
+\begin{split}
+\lin &= \mbox{množina všetkých tenzorov,} \\
+\linp &= \mbox{množina všetkých tenzorov $S$, pre ktoré je $\det S > 0$,} \\
+\sym &= \mbox{množina všetkých symetrických tenzorov,} \\
+\skw &= \mbox{množina všetkých antisymetrických tenzorov,} \\
+\psym &= \mbox{množina všetkých symetrických, pozitívne definitných tenzorov,}
+\\ \orth &= \mbox{množina všetkých ortogonálnych tenzorov,} \\
+\orthp &= \mbox{množina všetkých rotácií.} \\
+\end{split}
+\]
+
+Pojem \tu{telesa} $\mathcal B$ budeme používať na popis regulárnej  
+oblasti v $\mathcal E$ a budeme naň odkazovať ako na \tu{referenčnú
+konfiguráciu} $\mathcal B$. Body $\tu{p} \in \mathcal B$ nazývame \tu{materiálovými bodmi}.
+
+\tu{Deformáciou} telesa $\mathcal B$ rozumieme hladké, bijektívne zobrazenie $f$, 
+ktoré zobrazuje $\mathcal B$ na uzavretú oblasť v $\mathcal E$, a ktoré spĺňa
+$\det \nabla f > 0$. Tenzor $F(\tu{p})=\nabla f(\tu{p})$ sa nazýva
+\tu{deformačný gradient} a patrí do $\linp$.
+
+Nech $\mathcal B$ je teleso. \tu{Pohybom} $\mathcal B$ nazveme zobrazenie 
+$$x:\mathcal B \times \mathbb R \rightarrow \mathcal E$$ triedy $C^3$, 
+pre ktoré je $x(\cdot,t)$ pre každý pevný čas $t$ deformáciou $\mathcal B$. 
+\tu{Polohu} materiálového bodu $\tu{p}$ v čase $t$ označíme 
+$$\tu{x}=x(\tu{p},t)$$ a $\mathcal B_t = x(\mathcal B,t)$ bude značiť priestor
+vyplnený telesom v čase $t$. Definujeme \tu{trajektóriu} telesa ako množinu
+$$\mathcal T=\{(\tu{x},t)|\,\tu{x}\in\mathcal B_t,t\in\mathbb R\}.$$
+
+V každom čase $t$, $x(\cdot,t)$ má inverziu $$p(\cdot,t):\mathcal B_t \rightarrow
+\mathcal B$$
+tak, že $$x(p(\tu{x},t),t)=\tu{x}, \qquad p(x(\tu{p},t),t)=\tu{p}.$$
+
+Pre dané $(\tu{x},t) \in \mathcal T$, je $$\tu{p}=p(\tu{x},t)$$ materiálový
+bod, ktorý má v čase $t$ polohu $\tu{x}$. Zobrazenie $$p:\mathcal
+T\rightarrow\mathcal B$$ nazývame \tu{referenčným zobrazením} pohybu.
+
+\tu{Materiálovým poľom} rozumieme zobrazenie definované na $\mathcal
+B\times\mathbb R$; a \tu{priestorovým poľom} zobrazenie definované na $\mathcal
+T$. Môžme transformovať materiálové pole na priestorové a naopak. Definujeme
+\tu{priestorový popis} $\Phi_s$ materiálového poľa 
+$(\tu{p},t)\rightarrow\Phi(\tu{p},t)$ ako $$\Phi_s(\tu{x},t)=\Phi(p(\tu{x},t),t),$$
+a \tu{materiálový popis} $\Omega_m$ priestorového poľa
+$(\tu{x},t)\rightarrow\Omega(\tu{x},t)$ ako $$\Omega_m(\tu{p},t)=\Omega(x(\tu{p},t),t).$$
+
+Pre dané materiálové pole $\Phi$ značíme 
+$$\dot\Phi(\tu{p},t)=\ddt \Phi(\tu{p},t)$$
+deriváciu vzhľadom k času $t$ pre pevný bod $\tu{p}$, a
+$$\nabla\Phi(\tu{p},t)=\nabla_p\,\Phi(\tu{p},t)$$
+gradient vzhľadom k $\tu{p}$ pre $t$ pevné.
+
+Podobne, pre priestorové pole $\Omega$ značíme 
+$$\Omega'(\tu{x},t)=\ddt \Omega(\tu{x},t)$$
+deriváciu vzhľadom k času $t$ pre pevnú polohu $\tu{x}$, a
+$$\grad\Omega(\tu{x},t)=\nabla_x\,\Omega(\tu{x},t)$$
+značí gradient vzhľadom k $\tu{x}$ pre pevné $t$.
+
+Definujeme \tu{materiálovú časovú deriváciu} $\dot\Omega$ priestorového poľa
+$\Omega$ ako $$\dot\Omega=((\Omega_m)^.)_s\,;$$ t.j.,
+$$\dot\Omega(\tu{x},t)=\ddt \Omega(x(\tu{p},t),t)|_{\tu{p}=p(\tu{x},t)}\,.$$
+
+Ďalej, definujeme \tu{priestorovú divergenciu} $\dv$ ako operáciu divergencie
+pre priestorové pole tak, že $\grad$ je príslušný gradient. Teda,
+pre priestorové vektorové pole $v$, máme 
+$$\dv v(\tu{x},t)=\tr\grad v(\tu{x},t).$$
+
+\tu{Rýchlosťou} materiálového bodu $\tu{p}$ rozumieme $$\dot x(\tu{p},t)=\ddt
+x(\tu{p},t)$$ a $v:\mathcal T\rightarrow\mathcal V$ definované predpisom
+$$v(\tu{x},t)=\dot x(p(\tu{x},t),t)$$ 
+je \tu{priestorový popis rýchlosti}. 
+Priestorové pole $$L=\grad v$$ sa nazýva \tu{gradientom rýchlosti}. Označíme
+$$L=D+W,$$ kde $D$ a $W$, značia symetrickú a antisymetrickú časť $L$.
+
+Použitím predchádzajúcej definície gradientu rýchlosti sa dá ukázať, že 
+$\dot F=L_m F$ je materiálová časová derivácia deformačného gradientu $F$.
+
+\tu{Systémom síl} pre $\mathcal B$ počas pohybu (s trajektóriou $\mathcal T$), 
+rozumieme dvojicu $(s,b)$ zobrazení
+$$s:\mathcal N\times\mathcal T\rightarrow\mathcal V, \qquad b:\mathcal T\rightarrow\mathcal V,$$
+kde $\mathcal N$ je množina všetkých jednotkových vektorov 
+z $\mathcal V$\footnote{Presnejšia definícia je v Gurtin \cite[s. 99]{gurtin}.}.
+
+Podľa Cauchyho vety\footnote{Viď Gurtin \cite[s. 101]{gurtin}.}, 
+existuje priestorové tenzorové pole $T$ (nazvané \tu{Cauchyho napätie}) tak, že 
+\begin{itemize}
+ \item $s(n)=Tn$ pre každý jednotkový vektor $n$,
+ \item $T$ je symetrické,
+ \item $T$ spĺňa \tu{rovnicu pohybu} $$\dv T+b=\rho\dot v,$$  
+\end{itemize}
+kde $\rho$ je hustota pohybu.
+
+\tu{Dynamickým procesom} rozumieme dvojicu $(x,T)$, kde 
+\begin{itemize}
+ \item $x$ je pohyb,
+ \item $T$ je symetrické tenzorové pole na trajektórii $\mathcal T$ pohybu x,
+ \item $T(\tu{x},t)$ je hladké zobrazenie $\tu{x}$ do $\mathcal B_t$.
+\end{itemize}
+
+\tu{Materiálové teleso} je teleso $\mathcal B$ spolu s množinou $\mathcal C$ 
+dynamických procesov. $\mathcal C$ nazývame \tu{konštitučnou triedou} telesa.
+
+Nech $x$ a $x^*$ sú pohybmi telesa $\mathcal B$. 
+Vravíme, že $x$ a $x^*$ sú {\it spojené zmenou pozorovateľa}, ak
+\eq{gu20-1}{x^*(\tu{p},t)=q(t)+Q(t)[x(\tu{p},t)-o]}
+pre každý materiálový bod $\tu{p}$ a čas $t$, kde $q(t)$ je bod v priestore a
+$Q(t)$ je rotácia. 
+
+Pre $$L=\grad v, \qquad L^*=\grad v^*,$$ kde 
+$$v=(\dot x)_s, \qquad v^*=(\dot x^*)_s,$$ dostaneme
+$$L^*=QLQ^T+\dot{Q}Q^T,\qquad D^*=QDQ^T,$$ kde $D$ a $D^*$ sú symetrické
+časti $L$ a $L^*$. Máme tak $\tr L^*=\tr L$.
+
+Vravíme, že dvojica dynamických procesov $(x,T)$ a $(x^*,T^*)$ 
+\tu{je spojená zmenou pozorovateľa}, ak existujú $C^3$ zobrazenia 
+$$q:\mathbb R\rightarrow\mathcal E, \qquad Q:\mathbb R\rightarrow\orthp$$
+tak, že
+\begin{itemize}
+	\item \eref{gu20-1} platí pre všetky $\tu{p}\in\mathcal B$ a $t\in\mathbb R$,
+	\item $T^*=QTQ^T$ je trajektóriou $x$.
+\end{itemize}
+
+Vravíme, že \tu{odozva materiálového telesa je nezávislá na pozorovateľovi}, ak
+má príslušná konštitučná trieda $\mathcal C$ nasledujúcu vlastnosť: ak proces
+$(x,T)$ patrí do $\mathcal C$, potom tam patrí aj každý dynamický proces spojený
+s $(x,T)$ zmenou pozorovateľa.
+
+\chapter{Rovnice pohybu}
+
+V tejto práci riešime prúdenie stlačiteľnej Newtonovskej tekutiny, čo je
+materiál, pre ktorý je tenzor Cauchyho napätia definovaný konštitučnou rovnicou tvaru
+\eq{gu22-1}{T = -\pi I + C[L],}
+kde $C$ je lineárna funkcia gradientu rýchlosti $$L=\grad v.$$
+
+V knihe Gurtin \cite[s. 147]{gurtin}, sa pod pojmom Newtonovská tekutina rozumie {\it
+nestlačiteľná} Newtonovská tekutina. Navier-Stokesové rovnice sú odvodené s
+predpokladom $\tr L=0$, ktorý znamená nestlačiteľnosť. V našom prípade
+potrebujeme zahrnúť efekty stlačiteľnosti a člen $\tr L=\dv v$ nemôžme
+zanedbať. Pod pojmom Newtonovská tekutina budeme rozumieť {\it stlačiteľnú} Newtonovskú
+tekutinu.
+Z dôvodu zjednodušenia konštitučnej rovnice definujme \tu{extra napätie} $T_0$ vzťahom
+$$T_0=T+\pi I=T-\fr{1}{3}(\tr T)I.$$
+Konštitučná rovnica \eref{gu22-1} tak nadobudne jednoduchý tvar
+\eq{gu22-3}{T_0=C[L].}
+
+V súlade s predchádzajúcim, \tu{Newtonovskou tekutinou} rozumieme
+stlačiteľné materiálové teleso spolu s nasledujúcou konštitučnou rovnicou: 
+existuje lineárna {\it funkcia odozvy} $$C:\lin \rightarrow \sym$$ tak, že 
+konštitučná trieda $\mathcal C$ je množinou všetkých dynamických procesov $(x,T)$ 
+spĺňajúcich konštitučnú rovnicu \eref{gu22-3}.
+
+V nasledújúcej vete ukážeme, že funkcia odozvy je určená {\it dvoma konštantami}. 
+
+\tu{Veta}\footnote{Viď Gurtin \cite[s. 149]{gurtin}.}
+Nutná a postačujúca podmienka aby odozva Newtonovskej tekutiny bola
+nezávislá na zmene pozorovateľa je, že funkcia odozvy $C$ má tvar
+\eq{gu22-4}{C[L]=2\mu D + \lambda (\tr L)I}
+pre každé $L \in \lin$, kde $$D=\fr{1}{2}(L+L^T).$$
+Skalárne konštanty $\mu$ a $\lambda$ sú takzvané \tu{koeficienty viskozity} tekutiny.
+\begin{proof}
+Použijeme dôkaz uvedený v Gurtinovi s tým, že v ňom zahrnieme efekty stlačiteľnosti. 
+
+Predpokladajme, že platí \eref{gu22-4}. Nech $(x,T)$ patrí do konštitučnej
+triedy $\mathcal C$ tekutiny. Potom $$T_0=2\mu D+\lambda (\tr L)I.$$
+Nech ďalej $(x^*,T^*)$ je spojené s $(x,T)$ zmenou pozorovateľa. Potom
+$$T^*=QTQ^T,\qquad D^*=QDQ^T,$$
+a
+$$\tr T^*=\tr(QTQ^T)=\tr T.$$
+Pre extra napätie $T_0^*$ máme 
+\[
+\begin{split}
+T^*_0&=T^*-\fr{1}{3}(\tr T^*)I=QTQ^T-\fr{1}{3}(\tr T)QQ^T=QT_0Q^T\\
+&=Q(2\mu D)Q^T + \lambda\,\tr(QLQ^T)I = 2\mu D^* + \lambda(\tr L^*)I.
+\end{split}
+\]
+V predchádzajúcom výraze sme využili rovnosť
+$$L^*=QLQ^T+\dot{Q}Q^T$$ a pretože $\dot{Q}Q^T \in \skw$, máme
+$$\tr L^*=\tr(QLQ^T)=\tr L,$$
+
+Teda $(x^*,T^*)\in \mathcal C$ a odozva je nezávislá na pozorovateľovi. Tým máme
+ukazané, že podmienka \eref{gu22-4} je postačujúca.
+
+Dôkaze nutnosti je založený na nasledujúcej lemme a vete o reprezentácii. 
+
+\tu{Lemma.} Nech $L \in \lin$ je konštantný tenzor. 
+Potom existuje pohyb $x$ s gradientom rýchlosti rovným \eq{gu22-6}{\grad v=L.}
+\begin{proof}
+Uvažujme $$F(t)=e^{Lt}$$
+kde $F$ je jediné riešenie
+\eq{gu22-7}{\dot F=LF, \qquad F(0)=I.}
+Teda
+$$x(\tu{p},t)=\tu{q}+F(t)[\tu{p}-\tu{q}]$$
+definuje pohyb s deformačným gradientom $F$. Ďalej, \eref{gu22-6}
+vyplýva z \eref{gu22-7}$_1$, pretože $\dot F=(\grad v)_mF$ a $L=L_m$.
+\end{proof}
+
+\tu{Veta o reprezentácii pre izotropické tenzorové funkcie.}\footnote{Viď Gurtin
+\cite[s. 235]{gurtin}.} 
+Lineárna funkcia
+$$  G:Sym \rightarrow Sym $$
+je izotropická práve vtedy, keď existujú skalárne konštanty $\mu$ a $\lambda$
+také, že
+\eq{gu37-22}{G(A)=2\mu A + \lambda (\tr A)I}
+pre každé $A \in \sym$.
+
+Vráťme sa k dôkazu predchádzajúcej vety. K ukázaniu 
+{\it nutnosti} \eref{gu22-4} predpokladajme, že
+\eq{gu22-8}{\mbox{odozva je nezávislá na pozorovateľovi.}}
+Nech $L \in \lin$ je ľubovoľné, nech ďalej $x$ je pohyb zostrojený v
+predchádzajúcej lemme, a nech $T=T_0=C[L]$ je konštantné pole definované
+rovnosťou \eref{gu22-3}. Je teda $(x,T)\in \mathcal C$. 
+Nech $(x^*,T^*)$ je spojené s $(x,T)$ zmenou pozorovateľa. 
+Potom podľa \eref{gu22-8} je $(x^*,T^*)\in \mathcal C$ a
+\eq{gu22-9}{T^*_0=C[L^*].}
+Keďže
+$$T^*_0=QT_0Q^T,\qquad L^*=QLQ^T+\dot QQ^T;$$
+zo vzťahu \eref{gu22-9} máme
+$$QT_0Q^T=C[QLQ^T+\dot QQ^T],$$
+a použitím \eref{gu22-3} a \eref{gu22-6} dostaneme
+\eq{gu22-10}{QC[L]Q^T=C[QLQ^T+\dot QQ^T].}
+Táto rovnosť platí zrejme pre každé $L\in\lin$ (definičný obor $C$) a pre každú
+hladkú funkciu $Q:\mathbb R \rightarrow \orthp$ triedy $C^3$. Uvažujme $L$ pevné a
+definujme $$Q(t)=e^{-Wt},$$ kde $$W=\fr{1}{2}(L-L^T).$$
+Potom, pretože $W$ je antisymetrické, je $Q(t)$ rotácia, a $$Q(0)=I,\qquad \dot
+Q(0)=-W.$$ Využitím takto definovanej funkcie $Q$ v rovnici \eref{gu22-10} pre 
+$t=0$ dostaneme $$C[L]=C[L-W]=C[D],$$ kde $$D=\fr{1}{2}(L+L^T).$$
+Teda $C$ je kompletne definované svojou reštrikciou na $\sym$.
+Ďalej, nech $Q$ je konštantná funkcia s hodnotami v $\orthp$. Potom
+z \eref{gu22-10} pre $L=D$ ($D\in\sym$) dostávame $$QC[D]Q^T=C[QDQ^T].$$
+Pretože táto rovnosť platí pre každé $D\in\sym$ a každé $Q\in\orthp$, 
+reštrikcia $C$ na $\sym$ je izotropická. Z reprezentácie \eref{gu37-22} tak dostávame
+$$C[D]=2\mu D + \lambda (\tr L)I$$ pre každé $D\in\sym$. \\
+Podľa \eref{gu22-4}, konštitučná rovnica \eref{gu22-1} dostane tvar
+\eq{gu22-13}{T=-\pi I+2\mu D+\lambda (\tr L)I.}
+\end{proof}
+
+
+Uvažujme rovnicu pohybu v tvare
+$$\rho[v'+(\grad v)v]=\dv T+b.$$
+a dosaďme za $T$ podľa \eref{gu22-13}.
+Dostávame,
+$$2\,\dv D=\dv(\grad v+\grad v^T)=\Delta v+\grad \dv v$$
+a
+$$\dv(\tr L)I=\grad(\tr L)=\grad \dv v,$$
+kde $\Delta=\dv \grad$ je priestorový laplacian. Rovnica pohybu tak prejde v tvar
+\eq{gu22-14}
+{
+\rho[v'+(\grad v)v]=\mu\Delta v+(\lambda+\mu)\,\grad \dv v -\grad \pi + b.
+}
+
+Tieto (vektorové) rovnice sa nazývajú \tu{Navier-Stokesove rovnice}; pre dané $\mu$,
+$\lambda$ a $b$ 
+predstavujú nelineárny systém parciálnych diferenciálnych rovníc pre rýchlosť
+$v$, hustotu $\rho$ a tlak $\pi$.
+Dané rovnice doplníme o rovnicu kontinuity v tvare
+\eq{si-eq-cont}
+{
+\rho'+\dv(\rho v)=0.
+}
+
+Máme tak štyri rovnice pre päť neznámych, preto musíme dodať ešte jednu ďalšiu
+rovnicu. Budeme uvažovať barotropické prúdenie\footnote{Viď Feistauer et al. \cite[s.
+33]{feistauer}.}, pre ktoré je tlak definovaný známou funkciou hustoty
+\eq{si-bar-flow}
+{
+\pi=\widehat\pi(\rho).
+}
+
+V ďalšom budeme predpokladať, že $\mu>0,\, \lambda+\mu>0$. Druhá nerovnosť je
+splnená napr. v prípade $\lambda=-\frac{2}{3}\mu$, ktorý sa obvykle používa v
+technickej praxi.
+
+\chapter{Formulácia úlohy}
+
+V nasledujúcom texte sa budeme zaoberať dvoj-dimenzionálnym modelom popisujúcim
+interakciu viskóznej, stlačiteľnej tekutiny a leteckého profilu. Profil bude predstavovať
+tuhé teleso s dvoma stupňami voľnosti - vertikálnymi a torznými vibráciami (viď \iref{si-im-airfoil}). 
+Rovnice popisúce pohyb profilu uvedieme neskôr.
+
+\begin{figure}[h]
+  \begin{center}
+    \img{profile.png}
+    \caption{Model leteckého profilu}
+    \label{si-im-airfoil}
+  \end{center}
+\end{figure}
+
+\begin{figure}[h]
+  \begin{center}
+    \img{problem-setting.png}
+    \caption{Zadanie úlohy}
+    \label{si-im-setting}
+  \end{center}
+\end{figure}
+
+Daná úloha má časovo závislú hranicu (pohybujúci sa profil) a teda aj časovo
+závislú výpočtovú oblasť (viď \iref{si-im-setting}).
+
+\section{Vstupné dáta úlohy}
+
+Uvažujme úlohu danú na oblasti
+$$\widetilde\Omega:=\bigcup_{t\in[0,T]}\Omega_t\times\{t\}.$$
+Rozdeľme hranicu oblasti na štyri časti. Tri z nich budú časovo nezávislé,
+štvrtá predstavuje pohybujúci sa letecký profil a na čase závisí:
+\[
+\begin{array}{ll}
+\Gamma_I:=\Gamma_I\times[0,T] &\qquad \mbox{vstup,} \\
+\Gamma_O:=\Gamma_O\times[0,T] &\qquad \mbox{výstup,} \\
+\Gamma_W:=\Gamma_W\times[0,T] &\qquad \mbox{myslená stena prúdenia,} \\
+\Sigma:=\bigcup_{t\in[0,T]}\Gamma_{W_t}\times\{t\} &\qquad \mbox{letecký profil.}
+\end{array}
+\]
+V oblasti $\widetilde\Omega$ uvažujeme Navier-Stokesove rovnice, rovnicu
+kontinuity a rovnicu pre tlak barotropickej tekutiny:
+\eq{si-problem-domain}
+{
+\setlength\arraycolsep{2pt}
+\begin{array}{cl}
+\rho[v'+(\grad v)v] = \mu\Delta v+(\lambda+\mu)\,\grad \dv v -\grad \pi + b
+  & \qquad\mbox{v } \widetilde\Omega, \\
+\rho'+\dv(\rho v) = 0 & \qquad\mbox{v } \widetilde\Omega, \\
+\pi = \widehat\pi(\rho) & \qquad\mbox{v } \widetilde\Omega.
+\end{array}
+}
+Okrajové podmienky pre časovo nezávislú časť hranice:
+\eq{si-problem-boundary}
+{
+\setlength\arraycolsep{2pt}
+\begin{array}{rll}
+v &= v_D & \qquad\mbox{na } \Gamma_I \cup \Gamma_W, \\
+-(\pi-\pi_{ref})n+\mu\,(\grad v)n+(\lambda+\mu)(\dv v)n &= 0 & \qquad\mbox{na } \Gamma_O, \\
+\rho &= \rho_D & \qquad\mbox{na } \Gamma_I.
+\end{array}
+}
+Počiatočné podmienky:
+\eq{si-problem-initial}
+{
+\setlength\arraycolsep{2pt}
+\begin{array}{rll}
+v(x,0) &= v_0(x) & \qquad\mbox{v } \Omega_0, \\
+\rho(x,0) &= \rho_0(x) & \qquad\mbox{v } \Omega_0.
+\end{array}
+}
+Potrebujeme tiež predpísať okrajové podmienky na časti hranice $\Sigma$ a
+počiatočné podmienky na $\Omega_0$. Tomu sa budeme venovať neskôr.
+
+Skutočnosť, že oblasť vyplnená tekutinou sa s časom mení, spôsobuje určité
+obtiaže. Môžme ich vyriešiť použitím Arbitrary Lagrangian-Eulerian (ALE)
+formulácie pre matematický popis úlohy s pohyblivou hranicou. 
+
+\section{Rovnice pre pohyb profilu}
+
+V našej úlohe môže profil vykonávať dva druhy pohybu: vertikálne a torzné
+vibrácie. Tieto sú popísané dvoma stupňami voľnosti: uhlom náklonu profilu
+$\alpha$ a vertikálnou výchylkou $h$. Vývoj hodnôt týchto veličín pre malé
+výchylky profilu je popísaný diferenciálnymi rovnicami
+\footnote{Viď Růžička \cite[s. 17]{ruzicka}.} 
+\eq{si-airfoil-description}
+{
+\setlength\arraycolsep{2pt}
+\begin{array}{c}
+m \ddot h+D_{hh}\dot h+D_{h\alpha}\dot\alpha+S_\alpha\ddot\alpha+k_{hh}h=-L_2, \\
+I_\alpha\ddot\alpha+D_{\alpha h}\dot h+D_{\alpha\alpha}\dot\alpha+S_\alpha\ddot h+k_{\alpha\alpha}\alpha=M.
+\end{array}
+}
+V uvedených rovniciach používame nasledovné označenie:
+\[
+\setlength\arraycolsep{2pt}
+\begin{array}{ll}
+m=\int_{\Pi_t}{\tilde\rho}\dV & \mbox{hmotnosť profilu,} \\
+S_\alpha=\int_{\Pi_t}{x\tilde\rho}\dV & \mbox{statický moment,} \\
+I_\alpha=\int_{\Pi_t}{x^2\tilde\rho}\dV & \mbox{moment zotrvačnosti,} \\
+L_2=-\int_{\Gamma_{W_t}}\sum_{j=1}^2T_{2j}n_j\dA & \mbox{aerodynamický vztlak,} \\
+M=-\int_{\Gamma_{W_t}}\sum_{i,j=1}^2T_{ij}n_j r_i^{ort})\dA \quad
+&\mbox{aerodynamický moment,}
+\end{array}
+\]
+kde $\Pi_t$ je plocha profilu, $\tilde\rho$ je hustota profilu, 
+$\Gamma_{W_t}=\partial\Pi_t$, $T$ je tenzor napätia získaný z \eref{gu22-13},
+$r_1^{ort}=-(x_2-x_{EA2})$ a $r_2^{ort}=x_1-x_{EA1}$. Ďalej,
+\[
+\begin{array}{ll}
+k_{hh} & \mbox{vertikálna tuhosť,} \\
+k_{\alpha\alpha} & \mbox{torzná tuhosť,} \\
+D_{hh},D_{h\alpha},D_{\alpha h},D_{\alpha\alpha} \quad & \mbox{koeficienty
+viskózneho tlmenia}
+\end{array}
+\]
+sú dané (konštantné) parametre.
+
+Rovnice \eref{si-airfoil-description} doplníme týmito počiatočnými podmienkami \[
+\begin{array}{ll}
+\alpha(0)=\alpha_0, & \dot\alpha(0)=\alpha_1, \\
+h(0)=h_0, & \dot h(0)=h_1. \\
+\end{array}
+\]
+
+\begin{figure}[t]
+  \begin{center}
+    \img{vibrations.png}
+    \caption{Vibrácie profilu}
+    \label{si-im-vibrations}
+  \end{center}
+\end{figure}
+
+
+\section{ALE formulácia}
+
+Uvažujeme Navier-Stokesove rovnice v pohybujúcej sa oblasti 
+$\widetilde\Omega=\Omega_t\times[0,T]$ (presnejšie 
+$\bigcup_{t\in[0,T]}\Omega_t\times\{t\}$). \\
+Za účelom simulácie prúdenia tekutiny v pohybujúcej sa oblasti použijeme 
+{\it Arbitrary Lagrangian-Eulerian} (ALE) metódu\footnote{Viď napr. Quarteroni 
+\cite[s. 37]{quarteroni}; Sváček \cite[s. 6]{svacek}.}. 
+
+Nech $\Omega_0$ je počiatočná (referenčná) oblasť a $\Omega_t$ výpočtová oblasť v
+(neskoršom) čase $t$. Zavedieme ALE zobrazenie \[
+\begin{split}
+&\mathcal A_t:\Omega_0\rightarrow\Omega_t\\
+&X\mapsto y=y(X,t)=\mathcal A_t(X),
+\end{split}
+\]
+ktoré zobrazuje referenčnú oblasť $\Omega_0$ na výpočtovú oblasť $\Omega_t$ tak,
+že $\mathcal A_t$ je spojite diferencovateľné a bijektívne na $\Omega_0$. 
+
+Definujeme pole {\it rýchlosti pohybu oblasti} v bodoch $X$ referenčnej oblasti pre
+každú časovú vrstvu $t$ $$\tilde w(X,t)=\ddt y(X,t)=\ddt \mathcal A_t(X),$$
+ktorá má v priestorových premenných tvar
+$$w=\tilde w\circ A_t^{-1}, \qquad \mbox{i.e.} \quad w(y,t)=\tilde w(\mathcal A_t^{-1}(y),t).$$
+
+Pre funkciu $f:\widetilde\Omega\rightarrow\mathbb R$ definujeme {\it ALE
+deriváciu} $f$ vzťahom $$\DADt f(y,t) = \ddt \tilde f(X,t),$$
+kde $\tilde f=f\circ\mathcal A_t$ a $X=\mathcal A_t^{-1}(y)$.
+
+Použitím reťazového pravidla pre deriváciu dostaneme
+\[
+\begin{split}
+\DADt f(y,t) &= \ddt f(\mathcal A_t(X),t) \\
+&= \ddt f(y,t) + \grad f(y,t) \cdot \ddt \mathcal A_t(X)|_{X=\mathcal A_t^{-1}(y)} \\
+&= \ddt f(y,t) + \grad f(y,t) \cdot w(y,t).
+\end{split}
+\]
+
+Využitím ALE derivácie môžme prepísať Navier-Stokesove rovnice do tvaru
+\eq{si-ALE-form}
+{
+\setlength\arraycolsep{2pt}
+\begin{array}{c}
+\rho[\DADt v+(\grad v)(v-w)] = \mu\Delta v+(\lambda+\mu)\,\grad \dv v -\grad \pi + b \\
+\DADt \rho+\dv(\rho v)-\grad\rho \cdot w = 0 \\
+\pi = \widehat\pi(\rho)
+\end{array}
+}
+kde všetky rovnice uvažujeme v oblasti $\widetilde\Omega$. 
+Poznamenajme, že rovnica kontinuity môže byť zapísaná v tvare
+\eq{si-ALE-cont}{\DADt \rho+\rho\,\dv(v)+\grad\rho \cdot (v-w) = 0.}
+Okrajové a počiatočné podmienky ostanú nezmenené. 
+Poznamenajme, že predpokladáme $\mu>0,\,\lambda+\mu>0$.
+
+
+\section{Slabá formulácia}
+
+Definujme najprv priestory testovacích funkcií. Nech $q\in Q\!=\!L^2(\Omega_t)$ \\
+a $u\in V\!=\!\{u \in H^1(\Omega_t)^2 : u|_{\Gamma_D}=0\}$, kde 
+$\Gamma_D=\Gamma_I \cup \Gamma_W \cup \Gamma_{W_t}$ je časť hranice, na ktorej
+predpisujeme Dirichletovu okrajovú podmienku.
+
+Vynásobením rovnice \eref{si-ALE-form}$_1$ ľubovoľnou $u\in V$,
+integrovaním cez $\Omega_t$ a použitím Greenovej vety dostaneme
+\[
+\begin{split}
+\int_{\Omega_t}&{\rho\; \DADt v \cdot u}\dV
++ \int_{\Omega_t}{\rho(\grad v)(v-w) \cdot u}\dV = \\
+&-\mu \int_{\Omega_t}{\grad v \cdot \grad u}\dV
+- (\lambda+\mu) \int_{\Omega_t}{\dv v \,\dv u}\dV \\
+&+ \int_{\Omega_t}{\pi \,\dv u}\dV 
++ \int_{\Omega_t}{b \cdot u}\dV \\
+&+ \int_{\Gamma_O}{[-\pi + \mu\,(\grad v) + (\lambda+\mu)(\dv v)]\,n\cdot u}\dA
+\end{split}
+\]
+
+Podobným postupom s rovnicou \eref{si-ALE-cont}, kde za testovaciu funkciu volíme
+$q\in Q$, dostaneme
+\[
+\int_{\Omega_t}{\DADt \rho \;q}\dV
++\int_{\Omega_t}{\rho \,\dv v \;q}\dV
++\int_{\Omega_t}{\grad \rho \cdot (v - w) \;q}\dV
+=0
+\]
+
+Pre zjednodušenie zápisuje definujme lineárne formy\footnote{Označenie z
+Feistauer et al. \cite[s. 368]{feistauer}.}: 
+\[
+\begin{split}
+a(v,u) &= \mu\,(\grad v,\grad u) + (\lambda+\mu)(\dv v,\dv u), \\
+b(u,q) &= (\dv u,q), \\
+\alpha(v,\rho,q) &= (v \cdot \grad \rho,q), \\
+d(\rho,w,v,u) &= (\rho(\grad v)w,u), \\
+e(\rho,v,q) &= (\rho\,\dv v,q). \\
+\end{split}
+\]
+Použitím takto definovaných foriem prepíšeme pôvodné rovnice do tvaru
+\eq{si-weak-homog}{
+\begin{split}
+(\rho\; \DADt &v,u) + d(\rho,v-w,v,u) + a(v,u) \\
+&=b(u,\pi) + (b,u) + \int_{\Gamma_O}{\pi_{ref}\,n \cdot u}\dA, \\
+(\DADt \rho,q) &+ e(\rho,v,q) + \alpha(v-w,\rho,q) = 0,
+\end{split}
+}
+kde sme využili takzvanú slabú okrajovú podmienku \eref{si-problem-boundary}$_2$.
+
+\section{Okrajové podmienky}
+
+Predpokladajme, že pre každé $t\in[0,T]$ existuje $v^* \in H^1(\Omega_t)^2$
+tak, že
+\[
+\begin{array}{ll}
+v^*(x,t)=v_D(x,t), &x \in \Gamma_I \cup \Gamma_W \\
+v^*(x,t)=w(x,t), &x \in \Gamma_{W_t}
+\end{array}
+\]
+(v zmysle stôp). Potom je {\it ``slabá formulácia''} úlohy nasledová:\\
+\begin{itemize}
+ \item Nájsť $v$ tak, že $v - v^* \in V$; $\rho \in Q$
+ \item rovnica \eref{si-weak-homog}$_1$ je splnená $\forall u \in V$. 
+\end{itemize}
+
+Okrajová podmienka pre hustotu $\rho$ predpísana na vstupe $\Gamma_I$ je
+formulovaná v takzvanom slabom integrálnom zmysle\footnote{Viď Feistauer et al.
+\cite[s. 373]{feistauer}.} 
+\eq{si-weak-boundary-cond}{
+\begin{split}
+(\DADt &\rho,q) + e(\rho,v,q) + \alpha(v-w,\rho,q) 
+- \gamma \int_{\Gamma_I}{\rho v_D \cdot nq}\dA = \\
+&- \gamma \int_{\Gamma_I}{\rho_D v_D \cdot nq}\dA \qquad \forall q\in Q,
+\end{split}
+}
+kde $\gamma$ je vhodný parameter.
+
+Vo vyššie uvedenej formulácii predpokladáme, že funkcie $\rho,\,v,\,b,\,w,\rho_D,\,v_D$ sú
+natoľko regulárne, aby formy vystupujúce v \eref{si-weak-homog} a
+\eref{si-weak-boundary-cond} mali zmysel.
+
+\section{Diskrétna úloha}
+
+Predpokladajme pre jednoduchosť, že oblasti $\Omega_t$ sú polygonálne.
+Nech $\{\mathcal T_h\}_{h \in (0,T)}$ je regulárny systém triangulácií oblasti 
+$\widetilde\Omega:=\bigcup_{t\in[0,T]}\Omega_t\times\{t\}$. Na časovom intervale
+$[0,T]$ zvoľme delenie $t_n=n\tau, n=0,\ldots,r$ pre časový krok~$\tau$. 
+Pre ALE deriváciu funkcie $f$ definovanej na $\widetilde\Omega$ máme 
+\[
+\begin{split}
+\DADt f(y_n,t_n) &= \ddt\tilde{f}(X,t_n) \\
+&\approx(\tilde{f}(X,t_n)-\tilde{f}(X,t_{n-1}))/\tau \\
+&= (f(y_n,t_n)-f(y_{n-1},t_{n-1}))/\tau, 
+\end{split}
+\]
+kde $y_n=\mathcal A_{t_n}(X),\,y_{n-1}=\mathcal A_{t_{n-1}}(X)$.
+
+Z dôvodu zjednodušenia zápisu budeme písať $f^n=f(y_n,t_n)$ a $\dadt
+f^n=(f^n-f^{n-1})/\tau$.
+
+Približné riešenie budeme hľadať na každej časovej vrstve $t_n$ v
+konečnorozmernom priestore konečných elementov $X_h$ a $Q_h$. \\
+Položíme $Q_h=X_h^{(m)}$, $X_h=[X_h^{(k)}]^2$, $V_h=\{v_h \in [X_h^{(k)}]^2;\,
+v_h|_{\Gamma_D}=0\}$, kde $X_h^{(p)}=\{v_h\in C(\bar{\Omega}_h);\, v_h|_K \in
+P^p(K) \;\forall K\in \mathcal T_h \}$ a $P^p(K)$ je množina všetkých polynómov
+na $K$ stupňa $\leq p$. 
+
+
+Aproximujme priestory $V$ a $Q$ pomocou $V_h$ a $Q_h$. Použijeme aproximácie 
+\[
+\begin{split}
+v^n &\approx v_h^n \in V_h, \\
+\rho^n &\approx \rho_h^n \in Q_h, \\
+\DADt v^n &\approx (v^n-v^{n-1})/\tau \approx (v_h^n-v_h^{n-1})/\tau = \dadt
+v_h^n, \\
+\DADt \rho^n &\approx (\rho^n-\rho^{n-1})/\tau \approx
+(\rho_h^n-\rho_h^{n-1})/\tau = \dadt \rho_h^n 
+\end{split}
+\]
+
+Definujme ďalej funkciu
+$$q_h+\delta q_{h\beta} \quad \mbox{s } q_{h\beta}=(v_h^{n-1}-w_h^{n-1})\cdot\grad{q_h}$$ 
+pre vhodnú konštantu $\delta>0$, ktorá bude použitá namiesto $q_h$ z dôvodu
+zamedzenia Gibbsovho javu v numerickom riešení (takzvaná streamline diffusion
+test function)\footnote{Viď Feistauer et al. \cite[s. 346]{feistauer}}. 
+
+Nech $v_h^* \in X_h$ je aproximácia $v^*$. Môžme použiť aproximáciu 
+\[
+\begin{array}{ll}
+v_h^*(P_i,t)=v_D(P_i,t) \quad &\forall P_i\in\Gamma_I\cup\Gamma_W, \\
+v_h^*(P_i,t)=w(P_i,t) \quad &\forall P_i\in\Gamma_{W_t}, \\
+v_h^*(P_i,t)=0 \quad &\forall P_i\in\Omega_t. \\
+\end{array}
+\]
+
+
+Dostávame tak formuláciu diskrétnej úlohy:\\
+Nájsť $v_h^n \in X_h$ tak, že $v_h^n - v_h^{*n} \in V_h$; $\rho_h^n \in Q_h$
+spĺňajúce nasledujúce rovnice:
+
+\eq{si-discrete-problem}{
+\begin{split}
+(\rho_h^{n-1}\; &\dadt v_h^n,u_h) + d(\rho_h^{n-1},v_h^{n-1}-w_h^{n-1},v_h^n,u_h) + a(v_h^n,u_h) \\
+&=b(u_h,\pi_h^{n-1}) + (b_h^{n-1},u_h) + \int_{\Gamma_O}{\pi_{ref}\,u_h \cdot
+n}\dA \qquad \forall u_h \in V_h, \\ 
+(\dadt &\rho_h^n,q_h) + e(\rho_h^{n-1},v_h^n,\sdtf) \\
+&+\alpha(v_h^{n-1}-w_h^{n-1},\rho_h^n,\sdtf) 
+- \gamma \int_{\Gamma_I}{\rho_h^n v_D^n \cdot nq_h}\dA \\
+&= -\gamma \int_{\Gamma_I}{\rho_D^n v_D^n \cdot nq_h}\dA \qquad\forall q_h \in Q_h, \\
+&\pi_h^n = \widehat\pi(\rho_h^n).
+\end{split}}
+
+Môžme písať 
+$$v_h^n=v_h^{*n}+z_h^n, \quad \mbox{kde } z_h^n \in V_h.$$
+Pri predpoklade, že $u_h^{n-1},\rho_h^{n-1},\pi_h^{n-1},w_h^{n-1}$ sú známe,
+použitím substitúcie pre $v_h^n$ dostávame lineárny systém pre parametre
+určujúce neznáme funkcie $z_h^n$ a $\rho_h^n$.
+
+Systém \eref{si-discrete-problem} môžme riešiť v dvoch oddelených krokoch.
+Najprv nájdeme $v_h^n$ riešením prvej rovnice. Využitím výsledku nájdeme
+$\rho_h^n$ riešením druhej.

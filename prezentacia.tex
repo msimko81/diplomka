@@ -1,0 +1,432 @@
+\documentclass{beamer}
+
+\mode<presentation>
+{
+  \usetheme{Berkeley}
+  \usecolortheme{dolphin}
+  \setbeamercovered{transparent}
+}
+
+\usepackage[utf8]{inputenc}
+\usepackage[slovak]{babel}
+\usepackage{ae} % vektorove fonty so spravnou diakritikou nad t,l,d...
+\usepackage{times}
+\usepackage{verbatim} % pre moznost viacriadkovych komentarov 
+
+\title{Interaction of compressible fluid\\ and moving bodies}
+\author{Miroslav Šimko}
+\institute{Charles University in Prague\\Faculty of Mathematics and Physics}
+\date{2007}
+
+\begin{document}
+
+\input{mycommands.tex}
+
+\frame{\titlepage}
+\frame{\tableofcontents}
+
+\section{Governing Equations}
+
+\begin{comment}
+\frame
+{
+	\frametitle{Equation of motion}
+	$$\dv T+b=\rho[v'+(\grad v)v] \vm$$
+	
+	\begin{itemize}
+		\item $T$ \tu{Cauchy stress}
+		\item $b$ volume forces
+		\item $\rho$ density in motion
+		\item $v$ velocity
+	\end{itemize}
+}
+
+\frame
+{
+	\frametitle{Compressible Newtonian fluid}
+	$$T = -\pi I + C[L] \vm$$
+	$$C[L]=2\mu D + \lambda (\tr L)I \vm$$
+	
+	\begin{itemize}
+		\item $\mu, \lambda$ \tu{viscosity coefficients} of the fluid
+		\item $D$ symmetric part of velocity gradient $L$
+	\end{itemize}
+}
+\end{comment}
+
+\frame
+{
+	\frametitle{Governing equations}
+	\begin{itemize}
+    	\item \tu{Navier-Stokes} equations
+		$$\rho[v'+(\grad v)v]=\mu\Delta v+(\lambda+\mu)\,\grad \dv v -\grad \pi + b$$
+		\pause
+    	\item Continuity equation
+		$$\rho'+\dv(\rho v)=0 \vm$$
+		\pause
+    	\item Barotropic flow
+		$$\pi=\widehat\pi(\rho) \vm$$
+	\end{itemize}
+}
+
+\section{Formulation of the problem}
+
+\frame
+{
+	\frametitle{Model of Airfoil}
+	\img{profile.png}
+	\begin{itemize}
+		\item $\alpha$ airfoil deflection angle
+		\item $h$ vertical displacement
+	\end{itemize}
+}
+
+
+\subsection{Problem setting}
+
+\frame
+{
+	\frametitle{Problem setting}
+	\img{problem-setting.png}
+	\begin{itemize}
+		\item $\Gamma_I$ inlet
+		\item $\Gamma_O$ outlet
+		\item $\Gamma_W$ virtual flow wall
+		\item $\Gamma_{W_t}$ airfoil
+	\end{itemize}
+}
+
+
+\subsection{Mathematical formulation}
+
+\frame
+{
+  	\frametitle{Mathematical formulation}
+	\begin{itemize}
+    	\item ALE formulation
+    	\item Weak formulation
+    	\item Formulation of discrete problem
+	\end{itemize}
+}
+
+\frame
+{
+	\frametitle{ALE formulation}
+	\begin{itemize}
+		\item ALE mapping
+			\[
+			\begin{split}
+			&\mathcal A_t:\Omega_0\rightarrow\Omega_t\\
+			&X\mapsto y=y(X,t)=\mathcal A_t(X)
+			\end{split}
+			\]
+		\pause
+		\item Domain velocity
+			$$w(y,t)=\ddt \mathcal A_t(X)|_{X=\mathcal A_t^{-1}(y)}$$
+		\pause
+	 		\item ALE derivative
+			$$\DADt f(y,t) = \ddt f(\mathcal A_t(X),t)|_{X=\mathcal A_t^{-1}(y)}$$ 
+	\end{itemize}
+}
+
+\frame
+{
+	\frametitle{ALE formulation}
+	\begin{itemize}
+    	\item Navier-Stokes equations
+		\[
+			\begin{split}
+				\rho[\DADt v+(&\grad v)(v-w)] = \\
+					\mu\Delta v&+(\lambda+\mu)\,\grad \dv v -\grad \pi + b
+			\end{split}
+		\]
+    	\item Continuity equation
+		$$\DADt \rho+\rho\,\dv(v)+\grad\rho \cdot (v-w) = 0$$
+	\end{itemize}
+}
+
+\frame
+{
+	\frametitle{Weak formulation}
+	\begin{itemize}
+    	\item Test functions for density 
+    		$$q\in Q\!=\!L^2(\Omega_t)$$
+		\pause
+    	\item Test functions for velocity
+    		$$u\in V\!=\!\{u \in H^1(\Omega_t)^2 : u|_{\Gamma_D}=0\}, \,\mbox{where}$$
+    		$$\Gamma_D=\Gamma_I \cup \Gamma_W \cup \Gamma_{W_t}$$
+	\end{itemize}
+}
+
+\frame
+{
+	\frametitle{Denotation of forms}
+	\[
+	\begin{split}
+	a(v,u) &= \mu\,(\grad v,\grad u) + (\lambda+\mu)(\dv v,\dv u) \\
+	b(u,q) &= (\dv u,q) \\
+	\alpha(v,\rho,q) &= (v \cdot \grad \rho,q) \\
+	d(\rho,w,v,u) &= (\rho(\grad v)w,u) \\
+	e(\rho,v,q) &= (\rho\,\dv v,q) \\
+	\end{split}
+	\]
+}
+
+\frame
+{
+	\frametitle{Weak formulation}
+	\begin{itemize}
+    	\item Navier-Stokes equations
+    	\[ 
+		\begin{split}
+			(\rho\; \DADt &v,u) + d(\rho,v-w,v,u) + a(v,u) \\
+			&=b(u,\pi) + (b,u) + \int_{\Gamma_O}{\pi_{ref}\,n \cdot u}\dA
+		\end{split}
+		\]
+    	\item Continuity equation
+		$$(\DADt \rho,q) + e(\rho,v,q) + \alpha(v-w,\rho,q) = 0$$
+	\end{itemize}
+}
+
+\frame
+{
+	\frametitle{Boundary conditions}
+	\begin{itemize}
+    	\item Let $\forall t\in[0,T]$ exists $v^* \in H^1(\Omega_t)^2$ such that
+		\[
+		\begin{array}{ll}
+			v^*(x,t)=v_D(x,t), &x \in \Gamma_I \cup \Gamma_W \\
+			v^*(x,t)=w(x,t), &x \in \Gamma_{W_t}
+		\end{array}
+		\]    	
+		\pause
+		\item find $v$ such that $v - v^* \in V$; $\rho \in Q$ and Navier-Stokes
+		equations are satisfied $\forall u \in V$
+		\pause
+		\item boundary condition for density $\rho$ on $\Gamma_I$  
+		\[
+		\begin{split}
+			&(\DADt \rho,q) + e(\rho,v,q) + \alpha(v-w,\rho,q) \\
+			&- \gamma \int_{\Gamma_I}{\rho v_D \cdot nq}\dA = 
+			- \gamma \int_{\Gamma_I}{\rho_D v_D \cdot nq}\dA \qquad \forall q\in Q
+		\end{split}
+		\]
+  	\end{itemize}
+}
+
+\frame
+{
+	\frametitle{Discrete problem}
+	\begin{itemize}
+		\item Partition of time interval 
+      	\item Triangulation of the domain
+      	\item Approximation of ALE derivative
+      	\item Approximation of test functions spaces
+      	\item Numerical scheme
+	\end{itemize}
+}
+
+\frame
+{
+	\frametitle{Partition of time interval}
+	\begin{itemize}
+		\item Let $\{\mathcal T_h\}_{h \in (0,T)}$ be a regular system of triangulations of
+		the domain $\widetilde\Omega:=\bigcup_{t\in[0,T]}\Omega_t\times\{t\}$
+      	\item In a time interval $[0,T]$ we construct a partition $t_n=n\tau,
+      	n=0,\ldots,r$ with time step~$\tau$
+	\end{itemize}
+}
+
+\frame
+{
+	\frametitle{Triangulation of the domain}
+	\begin{itemize}
+		\item airfoil is approximated by piecewise linear curve 
+		\item we use polygonal triangulation
+	\end{itemize}
+	\img{mesh.png}	
+}
+
+\frame
+{
+	\frametitle{Approximation of ALE derivative}
+	\begin{itemize}
+		\item $y_n=\mathcal A_{t_n}(X),\,y_{n-1}=\mathcal A_{t_{n-1}}(X)$
+		\item $\tilde f=f\circ\mathcal A_t$
+		\pause
+      	\[
+		\begin{split}
+		\DADt &f(y_n,t_n) = \ddt\tilde{f}(X,t_n) \\
+		&\approx(\tilde{f}(X,t_n)-\tilde{f}(X,t_{n-1}))/\tau \\
+		&= (f(y_n,t_n)-f(y_{n-1},t_{n-1}))/\tau
+		\end{split}
+		\] 
+		\pause
+		\item $f^n=f(y_n,t_n)$
+		\pause
+		\item $\dadt f^n=\DADt f(y_n,t_n)=(f^n-f^{n-1})/\tau$
+	\end{itemize}
+}
+
+\frame
+{
+	\frametitle{Approximation of test functions spaces}
+	\begin{itemize}
+      	\item Let $P^p(K)$ be a set of polynomial functions on $K$ with degree $\leq p$. 
+      	\pause 
+      	\item $X_h^{(p)}=\{v_h\in C(\bar{\Omega}_h);\, v_h|_K \in P^p(K)\;\forall K\in \mathcal T_h \}$
+      	\pause 
+      	\item $Q \approx Q_h=X_h^{(m)}$ 
+      	\pause 
+      	\item $X_h=[X_h^{(k)}]^2$
+      	\pause 
+      	\item $V \approx V_h=\{v_h \in [X_h^{(k)}]^2;\,v_h|_{\Gamma_D}=0\}$
+	\end{itemize}
+}
+
+\frame
+{
+	\frametitle{Approximation of test functions spaces}
+	\begin{itemize}
+		\item $v^n \approx v_h^n \in V_h$
+		\item $\rho^n \approx \rho_h^n \in Q_h$
+		\item $\DADt v^n \approx (v_h^n-v_h^{n-1})/\tau = \dadt v_h^n$
+		\item $\DADt \rho^n \approx	(\rho_h^n-\rho_h^{n-1})/\tau = \dadt \rho_h^n$
+		\pause
+		\newline
+		\item $q_h+\delta q_{h\beta} \quad \mbox{pre }
+		q_{h\beta}=(v_h^{n-1}-w_h^{n-1})\cdot\grad{q_h}$
+	\end{itemize}
+}
+
+\frame
+{
+	\frametitle{Numerical scheme}
+	\[\begin{split}
+		(\rho_h^{n-1}\; &\dadt v_h^n,u_h) + d(\rho_h^{n-1},v_h^{n-1}-w_h^{n-1},v_h^n,u_h) + a(v_h^n,u_h) \\
+		&=b(u_h,\pi_h^{n-1}) + (b_h^{n-1},u_h) + \int_{\Gamma_O}{\pi_{ref}\,u_h \cdot
+		n}\dA
+	\end{split}\]
+	\pause 
+	\[\begin{split}
+		(\dadt &\rho_h^n,q_h) + e(\rho_h^{n-1},v_h^n,\sdtf) \\
+		&+\alpha(v_h^{n-1}-w_h^{n-1},\rho_h^n,\sdtf) 
+		- \gamma \int_{\Gamma_I}{\rho_h^n v_D^n \cdot nq_h}\dA \\
+		&= -\gamma \int_{\Gamma_I}{\rho_D^n v_D^n \cdot nq_h}\dA
+	\end{split}\]
+}
+
+
+
+\section{Existence of approximate solution}
+
+\frame
+{
+	\frametitle{Existence of approximate solution}
+	Assumptions
+	\begin{itemize}
+      	\item $\Gamma_D=\partial \Omega,\, v=v_D \mbox{ on } \Gamma_D$
+		\item exists $v_h^{n-1}$,\,$\rho_h^{n-1} \ge \rho_0 > 0$ 
+      	\item $K_{n-1} = \max \{ \n v_h^{n-1}\n_\infty,\n
+      	v_h^{n-1}-w_h^{n-1}\n_\infty,\n\rho_h^{n-1}\n_\infty \}$
+      	\item $\tau \le \frac{\mu\rho_0}{2K_{n-1}^4}, \quad \frac{3}{2}\tau \le
+      	\delta \le \frac{\mu}{4\,N\,K_{n-1}^2}$
+	\end{itemize}
+	Statement
+	\begin{itemize}
+   		\item There exists a solution $v_h^n$,\,$\rho_h^n$ on time level $t_n$ \\ 
+   		and it is unique.
+	\end{itemize}
+}
+
+\section{Used SW}
+
+\frame
+{
+	\frametitle{Triangulation of domain}
+	\begin{itemize}
+    	\item ANGENER   
+	\end{itemize}
+	\img{mesh-adapt.png}	
+}
+
+\frame
+{
+	\frametitle{Sparse system solver}
+	\begin{itemize}
+    	\item Pardiso
+    	\item Umfpack   
+	\end{itemize}
+	\img{benchmark.png}
+}
+
+\section{Numerical experiments}
+
+\frame
+{
+	\frametitle{Numerical experiments}
+	\begin{itemize}
+		\item $\mu = 1$
+		\item $\lambda = -\frac{2}{3}\mu$
+		\item $\rho_{ref} = 1$
+		\item $\pi(\rho) = 1$
+		\item $v_{ref} = (1,0)$
+		\item $\tau = 0.001$
+		\item $\delta = \frac{3}{2}\tau$
+		\item $Re=\frac{\rho_{ref}\,v_{ref}}{\mu} = 1$
+	\end{itemize}
+}
+
+\frame
+{
+	\frametitle{Distribution of density}
+	\begin{itemize}
+    	\item $\alpha=0, \,t=1$
+	\end{itemize}
+	\img{hustota1.png}	
+}
+
+\frame
+{
+	\frametitle{Distribution of density}
+	\begin{itemize}
+    	\item $\alpha=\pi/10, \,t=0.4$
+	\end{itemize}
+	\img{hustota2.png}	
+}
+
+\frame
+{
+	\frametitle{Streamlines of motion}
+	\begin{itemize}
+    	\item $\alpha=\pi/10, \,t=0.4$
+	\end{itemize}
+	\img{prudnice2.png}	
+}
+
+\section{Discussion}
+
+\frame
+{
+	\frametitle{Opened problems}
+	\begin{itemize}
+    	\item Problem with negative density
+    	\pause
+    	\item Experiments with high Reynolds numbers
+		\begin{itemize}
+			\item Using high-order elements
+			\item Different triangulations for density and velocity
+			\item Using hp-adaptive methods (like HERMES)
+		\end{itemize} 
+    	\pause
+    	\item Simulation of interaction of fluid with airfoil
+	\end{itemize}
+}
+
+\frame
+{
+	\frametitle{Questions and answers}
+	\img{qa.png}
+}
+
+\end{document}
